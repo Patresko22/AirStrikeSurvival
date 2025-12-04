@@ -11,5 +11,6 @@ public class HraciaPlocha {
         this.pozadie.zmenPolohu(0,0);
         this.pozadie.zobraz();
 
+
     }
 }

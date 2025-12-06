@@ -7,7 +7,8 @@ public class Main {
 
 
         new HraciaPlocha();
-        new Lod();
+        Lod lod = new Lod();
+        gameManager.pridajLod(lod);
         Hrac Hrac = new Hrac(gameManager);
         Bombarder bombarder1 = new Bombarder(50,50);
         gameManager.pridajBombarder(bombarder1);
@@ -16,6 +17,7 @@ public class Main {
         Manazer manazer = new Manazer();
         manazer.spravujObjekt(Hrac);
         manazer.spravujObjekt(gameManager);
+        manazer.spravujObjekt(bombarder1);
 
 
 

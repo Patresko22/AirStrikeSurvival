@@ -24,8 +24,14 @@ public class GameManager {
     }
 
     public boolean koliziaRakBom(Raketa raketa, Bombarder bombarder) {
-        return Math.abs(raketa.getRaketaX() - bombarder.getPolohaX()) < 50 &&
-                Math.abs(raketa.getRaketaY() - bombarder.getPolohaY()) < 50;
+        int stredRaketyX = raketa.getRaketaX()+5;
+
+        int stredRaketyY = raketa.getRaketaY() + 50;
+        int stredBombarderaX = bombarder.getPolohaX() + 50;
+        int stredBombarderaY = bombarder.getPolohaY() + 50;
+
+        return Math.abs(stredRaketyX - stredBombarderaX) < 50 &&
+                Math.abs(stredRaketyY - stredBombarderaY) < 50;
     }
 
     public void kontrolaKolizieRakBom(){

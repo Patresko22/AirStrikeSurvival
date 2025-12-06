@@ -13,6 +13,7 @@ public class Bombarder {
 
 
     public Bombarder(int polohaX, int polohaY) {
+        //velkosť obrazka je 100x100
         this.obrazokBombardera = new Obrazok("assets/UK_Lancaster.png");
         this.polohaX = polohaX;
         this.polohaY = polohaY;
@@ -38,7 +39,7 @@ public class Bombarder {
         }
 
         public void znicenie () {
-            System.out.println("znicene");
+            System.out.println("znicene Bombarder");
             obrazokBombardera.skry();
         }
 

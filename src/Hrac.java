@@ -1,19 +1,22 @@
 import fri.shapesge.Obrazok;
 import fri.shapesge.DataObrazku;
 
+
 public class Hrac {
     private Obrazok obrazokHraca;
     int polohaHracaX = 250;
     int polohaHracaY = 650;
+    private GameManager gameManager;
 
-    public Hrac(){
+    public Hrac(GameManager gameManager){
 
         this.polohaHracaX = 250;
         this.polohaHracaY = 650;
 
-        this.obrazokHraca = new Obrazok("assets/hrac_RPG.png");
+        this.obrazokHraca = new Obrazok("assets/HracRPG/hrac_RPG_HORE.png");
         obrazokHraca.zmenPolohu(250,650);
         obrazokHraca.zobraz();
+        this.gameManager = gameManager;
 
 
 
@@ -23,6 +26,7 @@ public class Hrac {
 
 
     public void tik() {
+
 
     }
 
@@ -48,6 +52,7 @@ public class Hrac {
     }
 
     public void posunVlavo() {
+
         //Ošetrenie vypadnutia z lode
         //Skusiť zjednodusit kod
         if(getPolohaHracaX() == -10 ||
@@ -117,6 +122,12 @@ public class Hrac {
 
     public int getPolohaHracaY(){
         return this.polohaHracaY;
+    }
+
+    public void aktivuj() {
+
+            Raketa raketa = new Raketa(getPolohaHracaX(), getPolohaHracaY());
+            gameManager.pridajRaketu(raketa);
     }
 
 

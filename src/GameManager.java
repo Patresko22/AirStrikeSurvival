@@ -5,6 +5,11 @@ public class GameManager {
     private ArrayList<Bombarder> bombardery;
     private Lod lodHraca;
 
+
+
+
+
+
     public GameManager(){
         this.rakety = new ArrayList<>();
         this.bombardery = new ArrayList<>();
@@ -24,22 +29,31 @@ public class GameManager {
     }
 
     public void tik() {
+        if (lodHraca.getHp() < 0){
+            System.exit(0);
+        }
         kontrolaKolizieRakBom();
         kontrolaKolizieBomLod();
+
+
+
+
 
     }
 
 
 
     public boolean koliziaRakBom(Raketa raketa, Bombarder bombarder) {
-        int stredRaketyX = raketa.getRaketaX()+5;
 
-        int stredRaketyY = raketa.getRaketaY() + 17;
-        int stredBombarderaX = bombarder.getPolohaX() + 30;
-        int stredBombarderaY = bombarder.getPolohaY() + 50;
+            int stredRaketyX = raketa.getRaketaX()+5;
 
-        return Math.abs(stredRaketyX - stredBombarderaX) < 50 &&
-                Math.abs(stredRaketyY - stredBombarderaY) < 50;
+            int stredRaketyY = raketa.getRaketaY() + 17;
+            int stredBombarderaX = bombarder.getPolohaX() + 30;
+            int stredBombarderaY = bombarder.getPolohaY() + 50;
+
+            return Math.abs(stredRaketyX - stredBombarderaX) < 50 &&
+                    Math.abs(stredRaketyY - stredBombarderaY) < 50;
+
     }
 
     public void kontrolaKolizieRakBom() {
@@ -72,10 +86,10 @@ public class GameManager {
 
     }
     public boolean koliziaBomLod(Lod lod, Bombarder bombarder) {
-        int vrcholLode = lod.getPolohaY();
+        int vrcholLode = lod.getPolohaY() + 30;
         int vrcholBombardera = bombarder.getPolohaY() + 100;
 
-        return Math.abs(vrcholLode - vrcholBombardera) < 20;
+        return Math.abs(vrcholLode - vrcholBombardera) < 15;
     }
 
     public void kontrolaKolizieBomLod(){

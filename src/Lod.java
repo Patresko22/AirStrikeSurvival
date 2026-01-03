@@ -15,19 +15,19 @@ public class Lod {
 
     }
     public int getHp(){
-        return hp;
+        return this.hp;
     }
 
     public int getPolohaX(){
-        return polohaX;
+        return this.polohaX;
     }
 
     public int getPolohaY(){
-        return polohaY;
+        return this.polohaY;
     }
 
     public void uberHP(int ubratHP){
-        hp -= ubratHP;
+        this.hp -= ubratHP;
         System.out.println("HP lode: " + hp);
     }
 }

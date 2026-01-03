@@ -6,7 +6,9 @@ public class Bombarder {
     private int hp = 50;
     private int polohaX;
     private int polohaY;
-    private final int damage = 40;
+    private boolean zhodenaBomba = false;
+    private int casDoPreletenie = 100;
+    private boolean jeZniceny = false;
 
 
 
@@ -39,8 +41,9 @@ public class Bombarder {
         }
 
         public void znicenie () {
-            System.out.println("znicene Bombarder");
-            obrazokBombardera.skry();
+                System.out.println("znicene Bombarder");
+                this.obrazokBombardera.skry();
+                this.jeZniceny = true;
         }
 
 
@@ -52,19 +55,35 @@ public class Bombarder {
             return this.hp;
         }
 
-        public void animaciaVybuchu () {
-            obrazokBombardera.zmenObrazok("assets/vybuch.png");
-        }
 
 
-        public void vratPovodnyObrazok () {
-            obrazokBombardera.zmenObrazok("assets/UK_Lancaster.png");
+
+
+        public void zhodBombu(){
+            this.zhodenaBomba = true;
         }
 
-        public int getDamage () {
-            return damage;
+        public boolean getZhodenaBomba() {
+            return this.zhodenaBomba;
         }
+
+        public int getCasDoPreletenie(){
+            return this.casDoPreletenie;
+        }
+
+        public void uberCas(){
+            this.casDoPreletenie -= 1;
+        }
+
+        public boolean getJeZniceny(){
+            return this.jeZniceny;
+        }
+
 
     }
+
+
+
+
 
 

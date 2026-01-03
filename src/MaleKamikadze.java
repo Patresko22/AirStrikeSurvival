@@ -12,9 +12,13 @@ public class MaleKamikadze {
     private int polohaLodeXMaximalna = 500;
     private int cielX;
     private int cielY;
+    private int casDoVybuchu = 70;
+    private boolean vybuch = false;
+
+
 
     public MaleKamikadze(){
-        //velkosť obrazka je 45x35
+        //velkosť obrazka  45x35
         this.obrazokMaleKamikadze = new Obrazok("assets/maleKamikadze.png");
         Random random = new Random();
         polohaX = random.nextInt(20, 450);
@@ -32,41 +36,50 @@ public class MaleKamikadze {
         Random random = new Random();
         int cislo = random.nextInt(0, 100);
 
-        if(cislo < 25){
-            if (polohaX != cielX){
-                if (polohaX < cielX){
-                    obrazokMaleKamikadze.posunVodorovne(1);
-                    polohaX += 1;
-                }if (polohaX > cielX){
-                    obrazokMaleKamikadze.posunVodorovne(-1);
-                    polohaX -= 1;
-                }if (polohaX == cielX){
-                    obrazokMaleKamikadze.posunZvisle(1);
-                    polohaY += 1;
+        if (this.vybuch == true){
+            return;
+
+
+        }else {
+            if(cislo < 25){
+                if (polohaX != cielX){
+                    if (polohaX < cielX){
+                        obrazokMaleKamikadze.posunVodorovne(1);
+                        polohaX += 1;
+                    }if (polohaX > cielX){
+                        obrazokMaleKamikadze.posunVodorovne(-1);
+                        polohaX -= 1;
+                    }if (polohaX == cielX){
+                        obrazokMaleKamikadze.posunZvisle(1);
+                        polohaY += 2;
+                    }
                 }
+
+
             }
-
-
         }
 
 
 
-        obrazokMaleKamikadze.posunZvisle(1);
-        polohaY += 1;
+
+
+
+        this.obrazokMaleKamikadze.posunZvisle(1);
+        this.polohaY += 1;
 
 
     }
 
     public int getPolohaX () {
-        return polohaX;
+        return this.polohaX;
     }
     public int getPolohaY () {
-        return polohaY;
+        return this.polohaY;
     }
 
     public void znicenie () {
         System.out.println("znicene Male Kamikadze");
-        obrazokMaleKamikadze.skry();
+        this.obrazokMaleKamikadze.skry();
     }
 
 
@@ -79,17 +92,28 @@ public class MaleKamikadze {
     }
 
     public void animaciaVybuchu () {
-        obrazokMaleKamikadze.zmenObrazok("assets/vybuch.png");
+        this.obrazokMaleKamikadze.zmenObrazok("assets/vybuchBomby.png");
+        this.obrazokMaleKamikadze.zobraz();
+        this.vybuch = true;
     }
 
-
-    public void vratPovodnyObrazok () {
-        obrazokMaleKamikadze.zmenObrazok("assets/maleKamikadze.png");
-    }
 
     public int getDamage () {
-        return damage;
+        return this.damage;
     }
+    public void uberCas(){
+        this.casDoVybuchu -= 1;
+
+    }
+    public int getCasDoVybuchu(){
+        return this.casDoVybuchu;
+    }
+
+    public boolean getVybuch(){
+        return this.vybuch;
+    }
+
+
 
 
 }

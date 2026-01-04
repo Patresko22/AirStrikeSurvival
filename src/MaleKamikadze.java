@@ -14,15 +14,16 @@ public class MaleKamikadze {
     private int cielY;
     private int casDoVybuchu = 70;
     private boolean vybuch = false;
+    private boolean posunutePoVybuchu = false;
 
 
 
-    public MaleKamikadze(){
+    public MaleKamikadze(int polohaY){
         //velkosť obrazka  45x35
         this.obrazokMaleKamikadze = new Obrazok("assets/maleKamikadze.png");
         Random random = new Random();
-        polohaX = random.nextInt(20, 450);
-        polohaY = random.nextInt(-10, -5);
+        this.polohaX = random.nextInt(20, 450);
+        this.polohaY = polohaY;
         obrazokMaleKamikadze.zmenPolohu(polohaX, polohaY);
         obrazokMaleKamikadze.zobraz();
         new Manazer().spravujObjekt(this);
@@ -95,6 +96,10 @@ public class MaleKamikadze {
         this.obrazokMaleKamikadze.zmenObrazok("assets/vybuchBomby.png");
         this.obrazokMaleKamikadze.zobraz();
         this.vybuch = true;
+        if (posunutePoVybuchu == false){
+            this.obrazokMaleKamikadze.posunZvisle(10);
+            this.posunutePoVybuchu = true;
+        }
     }
 
 

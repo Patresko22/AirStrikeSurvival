@@ -3,9 +3,12 @@ import  fri.shapesge.Manazer;
 
 public class Raketa {
     private Obrazok obrazokRakety;
-    private final int damage = 25;
+    private  int damage = 25;
     private int polohaX;
     private int polohaY;
+    private int casDoVybuchu = 10;
+    private boolean vybuch = false;
+
 
 
     public Raketa(int x, int y){
@@ -22,8 +25,13 @@ public class Raketa {
     }
 
     public  void  tik(){
-        this.obrazokRakety.posunZvisle(-7);
-        this.polohaY -= 7;
+        if (this.vybuch){
+            return;
+        }else {
+            this.obrazokRakety.posunZvisle(-7);
+            this.polohaY -= 7;
+        }
+
     }
 
     public int getRaketaX(){
@@ -34,12 +42,31 @@ public class Raketa {
     }
 
     public void vybuch(){
+        this.vybuch = true;
+        this.obrazokRakety.zmenObrazok("assets/vybuchRaketa.png");
+        this.obrazokRakety.zobraz();
+        this.damage = 0;
+    }
+
+    public void vybuchla(){
         this.obrazokRakety.skry();
         System.out.println("Raketa Vybuchla");
     }
 
     public int getDamage(){
         return this.damage;
+    }
+
+    public void uberCas(){
+        this.casDoVybuchu -= 1;
+    }
+
+    public boolean getVybuch(){
+        return this.vybuch;
+    }
+
+    public int getCasDoVybuchu(){
+        return this.casDoVybuchu;
     }
 
 

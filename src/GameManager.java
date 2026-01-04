@@ -4,6 +4,7 @@ public class GameManager {
     private ArrayList<Raketa> rakety;
     private ArrayList<Bombarder> bombardery;
     private ArrayList<MaleKamikadze> maleKamikadzeLietadla;
+    private ArrayList<VelkeKamikadze> velkeKamikadzeLietadla;
     private ArrayList<Bomba> Bomby;
     private Lod lodHraca;
 
@@ -17,7 +18,9 @@ public class GameManager {
         this.rakety = new ArrayList<>();
         this.bombardery = new ArrayList<>();
         this.maleKamikadzeLietadla = new ArrayList<>();
+        this.velkeKamikadzeLietadla = new ArrayList<>();
         this.Bomby = new ArrayList<>();
+
 
 
 
@@ -33,6 +36,9 @@ public class GameManager {
     public void pridajMaleKamikadze(MaleKamikadze maleKamikadze){
         maleKamikadzeLietadla.add(maleKamikadze);
     }
+    public void pridajVelkeKamikadze(VelkeKamikadze velkeKamikadze){
+        velkeKamikadzeLietadla.add(velkeKamikadze);
+    }
 
     public void pridajLod(Lod lod){
         lodHraca = lod;
@@ -46,17 +52,41 @@ public class GameManager {
         kontrolaKolizieBomLod();
         kontrolaKolizieMalKamLod();
         kontrolaKolizieRakMalKam();
+        ubratieCasuMaleKamikadze();
+        kontrolaKolizieRakVelKam();
+        kontrolaKolizieVelKamLod();
+        ubratieCasuVelkeKamikadze();
         ubratieCasuBombardera();
         znicenieBombardera();
         ubratieCasuBomby();
         vybuchBomby();
-        ubratieCasuMaleKamikadze();
+        kontrolaCasuRakety();
+
 
 
 
 
 
     }
+
+
+
+    public void kontrolaCasuRakety(){
+        ArrayList<Raketa> vybuchnute = new ArrayList<>();
+        for (Raketa raketa : rakety){
+            if (raketa.getVybuch()){
+                raketa.uberCas();
+                System.out.println(raketa.getCasDoVybuchu());
+            }
+            if (raketa.getCasDoVybuchu() <= 0){
+                raketa.vybuchla();
+                vybuchnute.add(raketa);
+            }
+        }
+        rakety.removeAll(vybuchnute);
+    }
+
+
 
 
 
@@ -85,16 +115,14 @@ public class GameManager {
 
     public void kontrolaKolizieRakMalKam() {
         ArrayList<MaleKamikadze> znicene = new ArrayList<>();
-        ArrayList<Raketa> vybuchnute = new ArrayList<>();
+
 
 
         for (Raketa raketa : rakety) {
             for (MaleKamikadze maleKamikadze : maleKamikadzeLietadla) {
                 if (koliziaRakMalKam(raketa, maleKamikadze)) {
                     maleKamikadze.uberHP(raketa.getDamage());
-                    vybuchnute.add(raketa);
                     raketa.vybuch();
-
                     if (maleKamikadze.getHp() <=0 ){
                         znicene.add(maleKamikadze);
                         maleKamikadze.znicenie();
@@ -105,7 +133,6 @@ public class GameManager {
             }
 
         }
-        rakety.removeAll(vybuchnute);
         maleKamikadzeLietadla.removeAll(znicene);
 
     }
@@ -171,6 +198,137 @@ public class GameManager {
 
 
 
+//--------------------------------Male Kamikadze-----------------------------------------
+
+    //---------------------------------------------------------------------------------------
+    //Male kamikadze -- Raketa
+
+    public boolean koliziaRakVelKam(Raketa raketa, VelkeKamikadze velkeKamikadze) {
+
+        int stredRaketyX = raketa.getRaketaX()+5;
+        int stredRaketyY = raketa.getRaketaY() + 17;
+
+        int stredVelkehoKamikadzeX = velkeKamikadze.getPolohaX() + 17;
+        int stredVelkehoKamikadzeY = velkeKamikadze.getPolohaY() + 22;
+
+        return Math.abs(stredRaketyX - stredVelkehoKamikadzeX) < 20 &&
+                Math.abs(stredRaketyY - stredVelkehoKamikadzeY) < 20;
+
+    }
+
+    public void kontrolaKolizieRakVelKam() {
+        ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
+
+
+        for (Raketa raketa : rakety) {
+            for (VelkeKamikadze velkeKamikadze : velkeKamikadzeLietadla) {
+                if (koliziaRakVelKam(raketa, velkeKamikadze)) {
+                    velkeKamikadze.uberHP(raketa.getDamage());
+                    raketa.vybuch();
+
+                    if (velkeKamikadze.getHp() <=0 ){
+                        znicene.add(velkeKamikadze);
+                        velkeKamikadze.znicenie();
+
+                    }
+
+                }
+            }
+
+        }
+        velkeKamikadzeLietadla.removeAll(znicene);
+
+    }
+
+
+
+
+
+    //---------------------------------------------------------------------------------------
+
+
+    //---------------------------------------------------------------------------------------
+
+    //Velke kamikadze -- Lod
+
+    public boolean koliziaVelKamLod(Lod lod, VelkeKamikadze velkeKamikadze) {
+        int vrcholLode = lod.getPolohaY() + 30;
+        int vrcholBombardera = velkeKamikadze.getPolohaY() + 35;
+
+        return Math.abs(vrcholLode - vrcholBombardera) < 35;
+    }
+
+    public void kontrolaKolizieVelKamLod(){
+        ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
+
+
+        for (VelkeKamikadze velkeKamikadze : velkeKamikadzeLietadla){
+            if (koliziaVelKamLod(lodHraca, velkeKamikadze)){
+
+                velkeKamikadze.animaciaVybuchu();
+
+                if (velkeKamikadze.getCasDoVybuchu() < 0){
+                    znicene.add(velkeKamikadze);
+                    lodHraca.uberHP(velkeKamikadze.getDamage());
+                    velkeKamikadze.znicenie();
+
+
+                }
+            }
+        }
+        velkeKamikadzeLietadla.removeAll(znicene);
+    }
+
+    public void ubratieCasuVelkeKamikadze(){
+        for (VelkeKamikadze velkeKamikadze : velkeKamikadzeLietadla){
+            if (velkeKamikadze.getVybuch() == true){
+                velkeKamikadze.uberCas();
+
+
+            }
+        }
+
+
+    }
+    //---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //----------------------------Bombarder------------------------------------------------
@@ -187,12 +345,13 @@ public class GameManager {
         return Math.abs(vrcholLode - vrcholBombardera) < 15;
     }
 
-    public void kontrolaKolizieBomLod(){
+    public void kontrolaKolizieBomLod() {
        for (Bombarder bombarder : bombardery){
            if (koliziaBomLod(lodHraca, bombarder)){
 
                if (bombarder.getZhodenaBomba() == false) {
-                   Bomba bomba = new Bomba(bombarder.getPolohaX()+30, bombarder.getPolohaY()+72);
+
+                   Bomba bomba = new Bomba(bombarder.getPolohaX()+30, bombarder.getPolohaY()+70);
                    bombarder.zhodBombu();
                    this.Bomby.add(bomba);
                }
@@ -215,7 +374,6 @@ public class GameManager {
         for (Bomba bomba : Bomby){
             if(bomba.getCasDoVybuchu() == 50){
                 bomba.zmenObrazokNavybuch();
-                System.out.println("Zmeneny obrazok");
             }
             if (bomba.getCasDoVybuchu() == 0){
                 lodHraca.uberHP(bomba.getDamage());
@@ -267,14 +425,12 @@ public class GameManager {
 
     public void kontrolaKolizieRakBom() {
         ArrayList<Bombarder> znicene = new ArrayList<>();
-        ArrayList<Raketa> vybuchnute = new ArrayList<>();
 
 
         for (Raketa raketa : rakety) {
             for (Bombarder bombarder : bombardery) {
                 if (koliziaRakBom(raketa, bombarder)) {
                     bombarder.uberHP(raketa.getDamage());
-                    vybuchnute.add(raketa);
                     raketa.vybuch();
 
                     if (bombarder.getHp() <=0 ){
@@ -287,7 +443,6 @@ public class GameManager {
             }
 
         }
-        rakety.removeAll(vybuchnute);
         bombardery.removeAll(znicene);
 
     }

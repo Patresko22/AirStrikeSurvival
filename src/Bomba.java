@@ -6,7 +6,7 @@ public class Bomba {
     private final int damage = 40;
     private int polohaX;
     private int polohaY;
-    private int casDoVybuchu = 100;
+    private int casDoVybuchu = 150;
 
 
     public Bomba(int polohaX, int polohaY){
@@ -15,8 +15,8 @@ public class Bomba {
         this.obrazokBomby = new Obrazok("assets/Bomba.png");
         this.obrazokBomby.zmenPolohu(polohaX, polohaY);
         this.obrazokBomby.zobraz();
-        new Manazer().spravujObjekt(this);
 
+        new Manazer().spravujObjekt(this);
     }
 
     public void tik(){

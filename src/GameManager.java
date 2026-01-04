@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class GameManager {
     private ArrayList<Raketa> rakety;
+    private ArrayList<Gulka> gulky;
     private ArrayList<Bombarder> bombardery;
     private ArrayList<MaleKamikadze> maleKamikadzeLietadla;
     private ArrayList<VelkeKamikadze> velkeKamikadzeLietadla;
@@ -16,6 +17,7 @@ public class GameManager {
 
     public GameManager(){
         this.rakety = new ArrayList<>();
+        this.gulky = new ArrayList<>();
         this.bombardery = new ArrayList<>();
         this.maleKamikadzeLietadla = new ArrayList<>();
         this.velkeKamikadzeLietadla = new ArrayList<>();
@@ -29,6 +31,9 @@ public class GameManager {
 
     public void pridajRaketu(Raketa raketa){
         rakety.add(raketa);
+    }
+    public void pridajGulku(Gulka gulka){
+        gulky.add(gulka);
     }
     public void pridajBombarder(Bombarder bombarder){
         bombardery.add(bombarder);
@@ -61,6 +66,14 @@ public class GameManager {
         ubratieCasuBomby();
         vybuchBomby();
         kontrolaCasuRakety();
+        kontrolaCasuGulky();
+
+
+
+        kontrolaKolizieGulMalKam();
+        kontrolaKolizieGulVelKam();
+        kontrolaKolizieGulBom();
+
 
 
 
@@ -68,6 +81,13 @@ public class GameManager {
 
 
     }
+
+
+
+
+
+
+    //----Raketa----
 
 
 
@@ -88,6 +108,21 @@ public class GameManager {
 
 
 
+    //----Gulka----
+    public void kontrolaCasuGulky(){
+        ArrayList<Gulka> vybuchnute = new ArrayList<>();
+        for (Gulka gulka : gulky){
+            if (gulka.getVybuch()){
+                gulka.uberCas();
+                System.out.println(gulka.getCasDoVybuchu());
+            }
+            if (gulka.getCasDoVybuchu() <= 0){
+                gulka.vybuchla();
+                vybuchnute.add(gulka);
+            }
+        }
+        gulky.removeAll(vybuchnute);
+    }
 
 
 
@@ -136,6 +171,50 @@ public class GameManager {
         maleKamikadzeLietadla.removeAll(znicene);
 
     }
+
+
+
+
+
+    //---------------------------------------------------------------------------------------
+    //--------Male Kamikadze -- Gulka----------------------
+
+    public boolean koliziaGulMalKam(Gulka gulka, MaleKamikadze maleKamikadze) {
+
+        int stredGulkyX = gulka.getGulkaX()+2;
+        int stredGulkyY = gulka.getGulkaY() + 7;
+
+        int stredMalehoKamikadzeX = maleKamikadze.getPolohaX() + 17;
+        int stredMalehoKamikadzeY = maleKamikadze.getPolohaY() + 22;
+
+        return Math.abs(stredGulkyX - stredMalehoKamikadzeX) < 20 &&
+                Math.abs(stredGulkyY - stredMalehoKamikadzeY) < 20;
+
+    }
+
+    public void kontrolaKolizieGulMalKam() {
+        ArrayList<MaleKamikadze> znicene = new ArrayList<>();
+
+        for (Gulka gulka : gulky) {
+            for (MaleKamikadze maleKamikadze : maleKamikadzeLietadla) {
+                if (koliziaGulMalKam(gulka, maleKamikadze)) {
+                    maleKamikadze.uberHP(gulka.getDamage());
+                    gulka.vybuch();
+                    if (maleKamikadze.getHp() <=0 ){
+                        znicene.add(maleKamikadze);
+                        maleKamikadze.znicenie();
+
+                    }
+
+                }
+            }
+
+        }
+        maleKamikadzeLietadla.removeAll(znicene);
+
+    }
+
+
 
 
 
@@ -198,10 +277,10 @@ public class GameManager {
 
 
 
-//--------------------------------Male Kamikadze-----------------------------------------
+//--------------------------------Velke Kamikadze-----------------------------------------
 
     //---------------------------------------------------------------------------------------
-    //Male kamikadze -- Raketa
+    //Velke kamikadze -- Raketa
 
     public boolean koliziaRakVelKam(Raketa raketa, VelkeKamikadze velkeKamikadze) {
 
@@ -245,6 +324,43 @@ public class GameManager {
 
 
     //---------------------------------------------------------------------------------------
+
+    //Velke kamikadze -- Gulka
+
+    public boolean koliziaGulVelKam(Gulka gulka, VelkeKamikadze velkeKamikadze) {
+
+        int stredGulkyX = gulka.getGulkaX()+2;
+        int stredGulkyY = gulka.getGulkaY() + 7;
+
+        int stredMalehoKamikadzeX = velkeKamikadze.getPolohaX() + 17;
+        int stredMalehoKamikadzeY = velkeKamikadze.getPolohaY() + 22;
+
+        return Math.abs(stredGulkyX - stredMalehoKamikadzeX) < 20 &&
+                Math.abs(stredGulkyY - stredMalehoKamikadzeY) < 20;
+
+    }
+
+    public void kontrolaKolizieGulVelKam() {
+        ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
+
+        for (Gulka gulka : gulky) {
+            for (VelkeKamikadze velkeKamikadze : velkeKamikadzeLietadla) {
+                if (koliziaGulVelKam(gulka, velkeKamikadze)) {
+                    velkeKamikadze.uberHP(gulka.getDamage());
+                    gulka.vybuch();
+                    if (velkeKamikadze.getHp() <=0 ){
+                        znicene.add(velkeKamikadze);
+                        velkeKamikadze.znicenie();
+
+                    }
+
+                }
+            }
+
+        }
+        velkeKamikadzeLietadla.removeAll(znicene);
+
+    }
 
 
     //---------------------------------------------------------------------------------------
@@ -365,7 +481,6 @@ public class GameManager {
     public void ubratieCasuBomby(){
         for (Bomba bomba : Bomby){
             bomba.uberCas();
-            System.out.println(bomba.getCasDoVybuchu());
         }
     }
 
@@ -448,6 +563,46 @@ public class GameManager {
     }
 
     //---------------------------------------------------------------------------------------
+
+
+    //Bombarder -- Gulka
+
+    public boolean koliziaGulBom(Gulka gulka, Bombarder bombarder) {
+
+        int stredGulkyX = gulka.getGulkaX() + 2;
+
+        int stredGulkyY = gulka.getGulkaY() + 7;
+        int stredBombarderaX = bombarder.getPolohaX() + 30;
+        int stredBombarderaY = bombarder.getPolohaY() + 50;
+
+        return Math.abs(stredGulkyX - stredBombarderaX) < 50 &&
+                Math.abs(stredGulkyY - stredBombarderaY) < 50;
+
+    }
+
+    public void kontrolaKolizieGulBom() {
+        ArrayList<Bombarder> znicene = new ArrayList<>();
+
+
+        for (Gulka gulka : gulky) {
+            for (Bombarder bombarder : bombardery) {
+                if (koliziaGulBom(gulka, bombarder)) {
+                    bombarder.uberHP(gulka.getDamage());
+                    gulka.vybuch();
+
+                    if (bombarder.getHp() <=0 ){
+                        znicene.add(bombarder);
+                        bombarder.znicenie();
+
+                    }
+
+                }
+            }
+
+        }
+        bombardery.removeAll(znicene);
+
+    }
 
 
 

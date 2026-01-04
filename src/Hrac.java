@@ -7,15 +7,20 @@ public class Hrac {
     int polohaHracaX = 250;
     int polohaHracaY = 650;
     private GameManager gameManager;
+    private int pocetZruseni = 2;
+    private TypZbrane typZbrane;
+
 
     public Hrac(GameManager gameManager){
+
+        this.typZbrane = TypZbrane.GULOMET;
 
         this.polohaHracaX = 250;
         this.polohaHracaY = 650;
 
-        this.obrazokHraca = new Obrazok("assets/HracRPG/hrac_RPG_HORE.png");
-        obrazokHraca.zmenPolohu(250,650);
-        obrazokHraca.zobraz();
+        this.obrazokHraca = new Obrazok("assets/HracZBRAN/hrac_zbran.png");
+        this.obrazokHraca.zmenPolohu(250,650);
+        this.obrazokHraca.zobraz();
         this.gameManager = gameManager;
 
 
@@ -30,9 +35,16 @@ public class Hrac {
 
     }
 
-    /*
-    * odstranit vypis v každej metode
-    * */
+
+
+    public void zrus(){
+        this.pocetZruseni -= 1;
+        if (this.pocetZruseni == 0) {
+            System.exit(0);
+        }
+    }
+
+
 
     public void posunVpravo() {
         if(getPolohaHracaX() == 470 ||
@@ -124,10 +136,26 @@ public class Hrac {
         return this.polohaHracaY;
     }
 
-    public void aktivuj() {
+    public void zmenZbran(){
+        if (typZbrane == TypZbrane.GULOMET){
+            this.typZbrane = TypZbrane.RAKETOMET;
+            this.obrazokHraca.zmenObrazok("assets/HracRPG/hrac_RPG_HORE.png");
+            this.obrazokHraca.zobraz();
+        }else {
+            this.typZbrane = TypZbrane.GULOMET;
+            this.obrazokHraca.zmenObrazok("assets/HracZBRAN/hrac_zbran.png");
+            this.obrazokHraca.zobraz();
+        }
+    }
 
+    public void aktivuj() {
+        if (this.typZbrane == TypZbrane.RAKETOMET) {
             Raketa raketa = new Raketa(getPolohaHracaX(), getPolohaHracaY());
-            gameManager.pridajRaketu(raketa);
+            this.gameManager.pridajRaketu(raketa);
+        }else {
+            Gulka gulka = new Gulka(getPolohaHracaX()+5, getPolohaHracaY()-10);
+            this.gameManager.pridajGulku(gulka);
+        }
     }
 
 

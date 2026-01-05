@@ -17,11 +17,19 @@ public class GameManager {
 
     private HraciaPlocha plocha;
     private int skore = 0;
-    private int hpLode = 300;
+    private int hpLode;
 
 
 
-    public GameManager(HraciaPlocha plocha) {
+    private boolean levelDokonceny = false;
+
+
+
+
+
+
+    public GameManager(HraciaPlocha plocha, int zaciatocneHpLode) {
+        this.hpLode = zaciatocneHpLode;
         this.plocha = plocha;
         this.rakety = new ArrayList<>();
         this.gulky = new ArrayList<>();
@@ -70,11 +78,12 @@ public class GameManager {
 
     public void pridajLod(Lod lod) {
         lodHraca = lod;
+        lodHraca.setHp(this.hpLode);
     }
 
     public void tik() {
-        if (lodHraca.getHp() < 0) {
-            System.exit(0);
+        if (this.hpLode <= 0) {
+            EndScreen endScreen = new EndScreen(this.skore);
         }
 
 
@@ -131,6 +140,14 @@ public class GameManager {
         kontrolaCasuGulkyStihacky();
         kontrolaKolizieRaketyGulkyStihacky();
         kontrolaKolizieGulkyStihackyGulky();
+
+
+        if (!this.levelDokonceny && uzNiesuZiadneLietadla()){
+            this.levelDokonceny = true;
+            WinScreen winScreen = new WinScreen(this.skore);
+        }
+
+
 
 
 
@@ -549,13 +566,16 @@ public class GameManager {
     }
 
     public void znicenieBombardera() {
+        ArrayList<Bombarder> znicene = new ArrayList<>();
         for (Bombarder bombarder : bombardery) {
             if (bombarder.getCasDoPreletenie() < 0) {
                 if (!bombarder.getJeZniceny()) {
                     bombarder.znicenie();
+                    znicene.add(bombarder);
                 }
             }
         }
+        bombardery.removeAll(znicene);
     }
 
     //---------------------------------------------------------------------------------------
@@ -749,13 +769,17 @@ public class GameManager {
     }
 
     public void znicenieStihacky() {
+        ArrayList<Stihacka> znicene = new ArrayList<>();
+
         for (Stihacka stihacka : stihacky) {
             if (stihacka.getCasDoPreletenie() < 0) {
                 if (!stihacka.getJeZniceny()) {
                     stihacka.znicenie();
+                    znicene.add(stihacka);
                 }
             }
         }
+        stihacky.removeAll(znicene);
     }
 
 
@@ -789,7 +813,6 @@ public class GameManager {
         for (RaketaStihacky raketaStihacky : raketyStihaciek) {
             if (raketaStihacky.getRaketaY() > lodHraca.getPolohaY() - 20) {
                 lodHraca.uberHP(raketaStihacky.getDamage());
-                uberHpLode(raketaStihacky.getDamage());
                 uberHpLode(raketaStihacky.getDamage());
                 raketaStihacky.vybuch();
             }
@@ -891,14 +914,23 @@ public class GameManager {
     public void pridajSkore(int skore){
         this.skore += skore;
         this.plocha.nastavSkore(this.skore);
-        System.out.println("SKORE UPDATE: " + this.skore);
     }
 
     public void uberHpLode(int hp){
         this.hpLode -= hp;
         this.plocha.nastavHpLode(this.hpLode);
-        System.out.println("HP LODE UPDATE: " + this.hpLode);
     }
+
+
+    public boolean jeLevelDokonceny(){
+        return this.levelDokonceny;
+    }
+
+
+    private boolean uzNiesuZiadneLietadla(){
+        return this.maleKamikadzeLietadla.isEmpty() && this.velkeKamikadzeLietadla.isEmpty() && this.bombardery.isEmpty() && this.stihacky.isEmpty();
+    }
+
 
 }
 

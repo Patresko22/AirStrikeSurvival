@@ -1,12 +1,13 @@
 import fri.shapesge.Manazer;
-import fri.shapesge.BlokTextu;
-import fri.shapesge.StylFontu;
 
-public class LevelManager {
+public class Hra {
 
-    public LevelManager(){
+
+    public Hra(){
+
+
         HraciaPlocha plocha = new HraciaPlocha();
-        GameManager gameManager = new GameManager(plocha);
+        GameManager gameManager = new GameManager(plocha, 200);
 
 
         Lod lod = new Lod();
@@ -19,11 +20,11 @@ public class LevelManager {
         gameManager.pridajBombarder(bombarder1);
         Bombarder bombarder2 = new Bombarder(300,-30);
         gameManager.pridajBombarder(bombarder2);
-        MaleKamikadze maleKamikadze1 = new MaleKamikadze(-190);
+        MaleKamikadze maleKamikadze1 = new MaleKamikadze(-500);
         gameManager.pridajMaleKamikadze(maleKamikadze1);
-        VelkeKamikadze velkeKamikadze = new VelkeKamikadze(-20);
+        VelkeKamikadze velkeKamikadze = new VelkeKamikadze(-900);
         gameManager.pridajVelkeKamikadze(velkeKamikadze);
-        Stihacka stihacka = new Stihacka(100 ,-100);
+       Stihacka stihacka = new Stihacka(100 ,-1200);
         gameManager.pridajStihacku(stihacka);
 
 
@@ -40,8 +41,15 @@ public class LevelManager {
         manazer.spravujObjekt(stihacka);
 
 
-    }
 
+
+
+
+
+
+
+
+    }
 
 
 

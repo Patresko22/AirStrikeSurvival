@@ -4,7 +4,7 @@ import fri.shapesge.DataObrazku;
 public class Lod {
     private Obrazok pozadie;
     private DataObrazku dataObrazku;
-    private int hp = 300;
+    private int hp;
     private int polohaX = 0;
     private int polohaY = 670 ;
 
@@ -28,6 +28,9 @@ public class Lod {
 
     public void uberHP(int ubratHP){
         this.hp -= ubratHP;
-        System.out.println("HP lode: " + hp);
+    }
+
+    public void setHp(int hp){
+        this.hp = hp;
     }
 }

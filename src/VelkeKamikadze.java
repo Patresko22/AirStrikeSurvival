@@ -6,7 +6,7 @@ public class VelkeKamikadze {
     private int hp = 25;
     private int polohaX;
     private int polohaY;
-    private final int damage = 50;
+    private final int damage = 40;
     private int polohaLodeY = 670;
     private int polohaLodeXMinimalna = 0;
     private int polohaLodeXMaximalna = 500;
@@ -45,11 +45,16 @@ public class VelkeKamikadze {
                 if (polohaX != cielX){
                     if (polohaX < cielX){
                         obrazokVelkeKamikadze.posunVodorovne(1);
-                        polohaX += 1;
-                    }if (polohaX > cielX){
+                            polohaX += 1;
+
+
+                    }
+                    if (polohaX > cielX){
                         obrazokVelkeKamikadze.posunVodorovne(-1);
-                        polohaX -= 1;
-                    }if (polohaX == cielX){
+                            polohaX -= 1;
+
+                    }
+                    if (polohaX == cielX){
                         obrazokVelkeKamikadze.posunZvisle(1);
                         polohaY += 2;
                     }

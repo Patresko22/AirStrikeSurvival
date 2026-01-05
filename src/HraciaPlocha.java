@@ -22,13 +22,13 @@ public class HraciaPlocha {
 
         this.skoreText = new BlokTextu("Skóre: 0");
         this.skoreText.zmenFont("Arial", StylFontu.BOLD,20);
-        this.skoreText.zmenFarbu("blue");
-        this.skoreText.zmenPolohu(410,27);
+        this.skoreText.zmenFarbu("black");
+        this.skoreText.zmenPolohu(400,27);
         this.skoreText.zobraz();
 
         this.hpLodeText = new BlokTextu("HP Lode: 0");
         this.hpLodeText.zmenFont("Arial", StylFontu.BOLD,10);
-        this.hpLodeText.zmenFarbu("blue");
+        this.hpLodeText.zmenFarbu("black");
         this.hpLodeText.zmenPolohu(200,25);
         this.hpLodeText.zobraz();
 

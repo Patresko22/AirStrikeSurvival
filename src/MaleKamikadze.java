@@ -43,15 +43,21 @@ public class MaleKamikadze {
 
 
         }else {
+
             if(cislo < 25){
                 if (polohaX != cielX){
                     if (polohaX < cielX){
                         obrazokMaleKamikadze.posunVodorovne(1);
-                        polohaX += 1;
-                    }if (polohaX > cielX){
+                            polohaX += 1;
+
+                    }
+                    if (polohaX > cielX){
                         obrazokMaleKamikadze.posunVodorovne(-1);
-                        polohaX -= 1;
-                    }if (polohaX == cielX){
+                            polohaX -= 1;
+
+
+                    }
+                    if (polohaX == cielX){
                         obrazokMaleKamikadze.posunZvisle(1);
                         polohaY += 2;
                     }

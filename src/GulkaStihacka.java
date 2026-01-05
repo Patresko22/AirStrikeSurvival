@@ -1,5 +1,6 @@
 import fri.shapesge.Obrazok;
 import  fri.shapesge.Manazer;
+//OK
 
 public class GulkaStihacka {
     private Obrazok obrazokGulky;
@@ -9,19 +10,13 @@ public class GulkaStihacka {
     private int casDoVybuchu = 4;
     private boolean vybuch = false;
 
-
-
     public GulkaStihacka(int x, int y){
         this.polohaX = x + 14;
         this.polohaY = y;
-
         this.obrazokGulky = new Obrazok("assets/gulka.png");
         this.obrazokGulky.zmenPolohu(polohaX, polohaY);
         this.obrazokGulky.zobraz();
         new Manazer().spravujObjekt(this);
-
-
-
     }
 
     public  void  tik(){
@@ -31,7 +26,6 @@ public class GulkaStihacka {
             this.obrazokGulky.posunZvisle(+10);
             this.polohaY += 10;
         }
-
     }
 
     public int getGulkaX(){
@@ -72,7 +66,4 @@ public class GulkaStihacka {
     public int getCasDoVybuchu(){
         return this.casDoVybuchu;
     }
-
-
-
 }

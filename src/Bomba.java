@@ -1,6 +1,8 @@
 import fri.shapesge.Manazer;
 import fri.shapesge.Obrazok;
 
+//OK
+
 public class Bomba {
     private Obrazok obrazokBomby;
     private final int damage = 40;

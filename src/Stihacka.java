@@ -22,13 +22,9 @@ public class Stihacka {
 
 
 
-
-
-
     public Stihacka(int polohaX, int polohaY) {
         Random random = new Random();
 
-        //OD 0 do 3 t.j. 0,1,2
         int typZbrane = random.nextInt(0,3);
         if (typZbrane < 2){
             this.pocetStrielRakiet = random.nextInt(2, 5);
@@ -40,8 +36,7 @@ public class Stihacka {
             this.pocetStrielRakiet = 0;
             System.out.println("Stihacka ma guliek: " + this.pocetStrielGuliek );
         }
-
-        this.poziciaYnaAktivovanieZbrane = random.nextInt(0, 200);
+        this.poziciaYnaAktivovanieZbrane = random.nextInt(0, 300);
         //velkosť obrazka je 60 x 50
         this.obrazokStihacky = new Obrazok("assets/Stihacka.png");
         this.polohaX = polohaX;
@@ -49,25 +44,18 @@ public class Stihacka {
         this.obrazokStihacky.zmenPolohu(polohaX, polohaY);
         this.obrazokStihacky.zobraz();
         new Manazer().spravujObjekt(this);
-
-
-
-
-
     }
 
     public void tik() {
-        obrazokStihacky.posunZvisle(1);
-        polohaY += 1;
-
-
+        this.obrazokStihacky.posunZvisle(1);
+        this.polohaY += 1;
     }
 
     public int getPolohaX () {
-        return polohaX;
+        return this.polohaX;
     }
     public int getPolohaY () {
-        return polohaY;
+        return this.polohaY;
     }
 
     public void znicenie () {
@@ -84,11 +72,6 @@ public class Stihacka {
     public int getHp () {
         return this.hp;
     }
-
-
-
-
-
 
     public int getCasDoPreletenie(){
         return this.casDoPreletenie;
@@ -141,10 +124,10 @@ public class Stihacka {
     public void uberRaketu(){
         this.pocetStrielRakiet -= 1;
     }
+
     public void uberGulku(){
         this.pocetStrielGuliek -= 1;
     }
-
 
 
     public int getTimeOutGuliek(){
@@ -161,12 +144,6 @@ public class Stihacka {
     public int getSkore(){
         return this.skore;
     }
-
-
-
-
-
-
 }
 
 

@@ -1,6 +1,8 @@
 import fri.shapesge.Manazer;
 import fri.shapesge.Obrazok;
 import java.util.Random;
+//OK
+
 public class MaleKamikadze {
     private Obrazok obrazokMaleKamikadze;
     private int hp = 25;
@@ -25,11 +27,11 @@ public class MaleKamikadze {
         Random random = new Random();
         this.polohaX = random.nextInt(20, 450);
         this.polohaY = polohaY;
-        obrazokMaleKamikadze.zmenPolohu(polohaX, polohaY);
-        obrazokMaleKamikadze.zobraz();
+        this.obrazokMaleKamikadze.zmenPolohu(this.polohaX, polohaY);
+        this.obrazokMaleKamikadze.zobraz();
         new Manazer().spravujObjekt(this);
-        cielX = random.nextInt(polohaLodeXMinimalna + 50, polohaLodeXMaximalna - 110);
-        cielY = polohaLodeY;
+        this.cielX = random.nextInt(this.polohaLodeXMinimalna + 50, this.polohaLodeXMaximalna - 110);
+        this.cielY = this.polohaLodeY;
 
 
     }
@@ -37,50 +39,34 @@ public class MaleKamikadze {
     public void tik() {
         Random random = new Random();
         int cislo = random.nextInt(0, 100);
-
         if (this.vybuch == true){
             return;
-
-
         }else {
-
             if(cislo < 25){
-                if (polohaX != cielX){
-                    if (polohaX < cielX){
-                        obrazokMaleKamikadze.posunVodorovne(1);
-                            polohaX += 1;
-
+                if (this.polohaX != this.cielX){
+                    if (this.polohaX < this.cielX){
+                        this.obrazokMaleKamikadze.posunVodorovne(1);
+                        this.polohaX += 1;
                     }
-                    if (polohaX > cielX){
-                        obrazokMaleKamikadze.posunVodorovne(-1);
-                            polohaX -= 1;
-
-
+                    if (this.polohaX > this.cielX){
+                        this.obrazokMaleKamikadze.posunVodorovne(-1);
+                        this.polohaX -= 1;
                     }
-                    if (polohaX == cielX){
-                        obrazokMaleKamikadze.posunZvisle(1);
-                        polohaY += 2;
+                    if (this.polohaX == this.cielX){
+                        this.obrazokMaleKamikadze.posunZvisle(1);
+                        this.polohaY += 2;
                     }
                 }
-
-
             }
         }
-
-
-
-
-
-
         this.obrazokMaleKamikadze.posunZvisle(1);
         this.polohaY += 1;
-
-
     }
 
     public int getPolohaX () {
         return this.polohaX;
     }
+
     public int getPolohaY () {
         return this.polohaY;
     }
@@ -89,7 +75,6 @@ public class MaleKamikadze {
         System.out.println("znicene Male Kamikadze");
         this.obrazokMaleKamikadze.skry();
     }
-
 
     public void uberHP ( int ubrateHP){
         this.hp -= ubrateHP;
@@ -109,14 +94,14 @@ public class MaleKamikadze {
         }
     }
 
-
     public int getDamage () {
         return this.damage;
     }
+
     public void uberCas(){
         this.casDoVybuchu -= 1;
-
     }
+
     public int getCasDoVybuchu(){
         return this.casDoVybuchu;
     }
@@ -124,12 +109,8 @@ public class MaleKamikadze {
     public boolean getVybuch(){
         return this.vybuch;
     }
+
     public int getSkore(){
         return this.skore;
     }
-
-
-
-
-
 }

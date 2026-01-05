@@ -1,5 +1,6 @@
 import fri.shapesge.Obrazok;
 import fri.shapesge.DataObrazku;
+//OK
 
 public class Lod {
     private Obrazok pozadie;
@@ -12,8 +13,8 @@ public class Lod {
         this.pozadie = new Obrazok("assets/lod.jpg");
         this.pozadie.zmenPolohu(polohaX,polohaY);
         this.pozadie.zobraz();
-
     }
+
     public int getHp(){
         return this.hp;
     }

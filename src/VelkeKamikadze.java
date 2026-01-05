@@ -1,6 +1,8 @@
 import fri.shapesge.Manazer;
 import fri.shapesge.Obrazok;
 import java.util.Random;
+//OK
+
 public class VelkeKamikadze {
     private Obrazok obrazokVelkeKamikadze;
     private int hp = 25;
@@ -18,61 +20,44 @@ public class VelkeKamikadze {
     private int skore = 2;
 
 
-
     public VelkeKamikadze(int polohaY){
         //velkosť obrazka  45x35
         this.obrazokVelkeKamikadze = new Obrazok("assets/velkeKamikadze.png");
         Random random = new Random();
         this.polohaX = random.nextInt(20, 450);
         this.polohaY = polohaY;
-        this.obrazokVelkeKamikadze.zmenPolohu(polohaX, polohaY);
+        this.obrazokVelkeKamikadze.zmenPolohu(this.polohaX, polohaY);
         this.obrazokVelkeKamikadze.zobraz();
         new Manazer().spravujObjekt(this);
-        cielX = random.nextInt(polohaLodeXMinimalna + 50, polohaLodeXMaximalna - 110);
-        cielY = polohaLodeY;
+        this.cielX = random.nextInt(this.polohaLodeXMinimalna + 50, this.polohaLodeXMaximalna - 110);
+        this.cielY = this.polohaLodeY;
     }
 
     public void tik() {
         Random random = new Random();
         int cislo = random.nextInt(0, 100);
-
         if (this.vybuch == true){
             return;
-
-
         }else {
             if(cislo < 70){
-                if (polohaX != cielX){
-                    if (polohaX < cielX){
-                        obrazokVelkeKamikadze.posunVodorovne(1);
-                            polohaX += 1;
-
-
+                if (this.polohaX != this.cielX){
+                    if (this.polohaX < this.cielX){
+                        this.obrazokVelkeKamikadze.posunVodorovne(1);
+                        this.polohaX += 1;
                     }
-                    if (polohaX > cielX){
-                        obrazokVelkeKamikadze.posunVodorovne(-1);
-                            polohaX -= 1;
-
+                    if (this.polohaX > this.cielX){
+                        this.obrazokVelkeKamikadze.posunVodorovne(-1);
+                        this.polohaX -= 1;
                     }
-                    if (polohaX == cielX){
-                        obrazokVelkeKamikadze.posunZvisle(1);
-                        polohaY += 2;
+                    if (this.polohaX == this.cielX){
+                        this.obrazokVelkeKamikadze.posunZvisle(1);
+                        this.polohaY += 2;
                     }
                 }
-
-
             }
         }
-
-
-
-
-
-
         this.obrazokVelkeKamikadze.posunZvisle(1);
         this.polohaY += 1;
-
-
     }
 
     public int getPolohaX () {
@@ -87,7 +72,6 @@ public class VelkeKamikadze {
         this.obrazokVelkeKamikadze.skry();
     }
 
-
     public void uberHP ( int ubrateHP){
         this.hp -= ubrateHP;
     }
@@ -100,20 +84,21 @@ public class VelkeKamikadze {
         this.obrazokVelkeKamikadze.zmenObrazok("assets/vybuchBomby.png");
         this.obrazokVelkeKamikadze.zobraz();
         this.vybuch = true;
-        if (posunutePoVybuchu == false){
+        if (!this.posunutePoVybuchu){
             this.obrazokVelkeKamikadze.posunZvisle(10);
             this.posunutePoVybuchu = true;
         }
     }
 
-
     public int getDamage () {
         return this.damage;
     }
+
     public void uberCas(){
         this.casDoVybuchu -= 1;
 
     }
+
     public int getCasDoVybuchu(){
         return this.casDoVybuchu;
     }
@@ -121,12 +106,8 @@ public class VelkeKamikadze {
     public boolean getVybuch(){
         return this.vybuch;
     }
+
     public int getSkore(){
         return this.skore;
     }
-
-
-
-
-
 }

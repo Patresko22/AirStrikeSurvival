@@ -1,6 +1,8 @@
 import fri.shapesge.Obrazok;
 import  fri.shapesge.Manazer;
 
+//OK
+
 public class RaketaStihacky {
     private Obrazok obrazokRakety;
     private  int damage = 25;
@@ -10,14 +12,12 @@ public class RaketaStihacky {
     private boolean vybuch = false;
 
 
-
     public RaketaStihacky(int x, int y){
         this.polohaX = x + 14;
         this.polohaY = y;
-
         this.obrazokRakety = new Obrazok("assets/raketaStihacky.png");
-        obrazokRakety.zmenPolohu(polohaX, polohaY);
-        obrazokRakety.zobraz();
+        this.obrazokRakety.zmenPolohu(this.polohaX, this.polohaY);
+        this.obrazokRakety.zobraz();
         new Manazer().spravujObjekt(this);
 
 
@@ -31,7 +31,6 @@ public class RaketaStihacky {
             this.obrazokRakety.posunZvisle(+7);
             this.polohaY += 7;
         }
-
     }
 
     public int getRaketaX(){
@@ -72,7 +71,4 @@ public class RaketaStihacky {
     public int getCasDoVybuchu(){
         return this.casDoVybuchu;
     }
-
-
-
 }

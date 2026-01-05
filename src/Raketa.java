@@ -1,5 +1,6 @@
 import fri.shapesge.Obrazok;
 import  fri.shapesge.Manazer;
+//OK
 
 public class Raketa {
     private Obrazok obrazokRakety;
@@ -14,14 +15,10 @@ public class Raketa {
     public Raketa(int x, int y){
         this.polohaX = x + 14;
         this.polohaY = y;
-
         this.obrazokRakety = new Obrazok("assets/raketa.png");
-        obrazokRakety.zmenPolohu(polohaX, polohaY);
-        obrazokRakety.zobraz();
+        this.obrazokRakety.zmenPolohu(polohaX, polohaY);
+        this.obrazokRakety.zobraz();
         new Manazer().spravujObjekt(this);
-
-
-
     }
 
     public  void  tik(){
@@ -31,7 +28,6 @@ public class Raketa {
             this.obrazokRakety.posunZvisle(-7);
             this.polohaY -= 7;
         }
-
     }
 
     public int getRaketaX(){
@@ -72,7 +68,4 @@ public class Raketa {
     public int getCasDoVybuchu(){
         return this.casDoVybuchu;
     }
-
-
-
 }

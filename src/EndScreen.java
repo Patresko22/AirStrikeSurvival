@@ -2,6 +2,8 @@ import fri.shapesge.BlokTextu;
 import fri.shapesge.Obrazok;
 import fri.shapesge.StylFontu;
 
+//OK
+
 public class EndScreen {
     private int skore;
     private Obrazok pozadie;

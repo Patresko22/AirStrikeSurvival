@@ -1,3 +1,6 @@
+import fri.shapesge.BlokTextu;
+import fri.shapesge.StylFontu;
+
 import java.util.ArrayList;
 
 public class GameManager {
@@ -11,9 +14,15 @@ public class GameManager {
     private Lod lodHraca;
     private ArrayList<RaketaStihacky> raketyStihaciek;
     private ArrayList<GulkaStihacka> gulkyStihacky;
-    private int skore = 0;
 
-    public GameManager() {
+    private HraciaPlocha plocha;
+    private int skore = 0;
+    private int hpLode = 300;
+
+
+
+    public GameManager(HraciaPlocha plocha) {
+        this.plocha = plocha;
         this.rakety = new ArrayList<>();
         this.gulky = new ArrayList<>();
         this.bombardery = new ArrayList<>();
@@ -23,6 +32,13 @@ public class GameManager {
         this.Bomby = new ArrayList<>();
         this.raketyStihaciek = new ArrayList<>();
         this.gulkyStihacky = new ArrayList<>();
+
+        this.plocha.nastavSkore(this.skore);
+
+        this.plocha.nastavHpLode(this.hpLode);
+
+
+
 
 
 
@@ -60,6 +76,7 @@ public class GameManager {
         if (lodHraca.getHp() < 0) {
             System.exit(0);
         }
+
 
 
         kontrolaRakety();
@@ -241,7 +258,7 @@ public class GameManager {
                     if (maleKamikadze.getHp() <= 0) {
                         znicene.add(maleKamikadze);
                         maleKamikadze.znicenie();
-                        this.skore += maleKamikadze.getSkore();
+                        pridajSkore(maleKamikadze.getSkore());
 
                     }
 
@@ -281,7 +298,8 @@ public class GameManager {
                     if (maleKamikadze.getHp() <= 0) {
                         znicene.add(maleKamikadze);
                         maleKamikadze.znicenie();
-                        this.skore += maleKamikadze.getSkore();
+                        pridajSkore(maleKamikadze.getSkore());
+
 
                     }
 
@@ -318,6 +336,7 @@ public class GameManager {
                 if (maleKamikadze.getCasDoVybuchu() < 0) {
                     znicene.add(maleKamikadze);
                     lodHraca.uberHP(maleKamikadze.getDamage());
+                    uberHpLode(maleKamikadze.getDamage());
                     maleKamikadze.znicenie();
                 }
             }
@@ -366,7 +385,7 @@ public class GameManager {
                     if (velkeKamikadze.getHp() <= 0) {
                         znicene.add(velkeKamikadze);
                         velkeKamikadze.znicenie();
-                        this.skore += velkeKamikadze.getSkore();
+                        pridajSkore(velkeKamikadze.getSkore());
 
                     }
 
@@ -407,7 +426,7 @@ public class GameManager {
                     if (velkeKamikadze.getHp() <= 0) {
                         znicene.add(velkeKamikadze);
                         velkeKamikadze.znicenie();
-                        this.skore += velkeKamikadze.getSkore();
+                        pridajSkore(velkeKamikadze.getSkore());
 
                     }
 
@@ -443,6 +462,7 @@ public class GameManager {
                 if (velkeKamikadze.getCasDoVybuchu() < 0) {
                     znicene.add(velkeKamikadze);
                     lodHraca.uberHP(velkeKamikadze.getDamage());
+                    uberHpLode(velkeKamikadze.getDamage());
                     velkeKamikadze.znicenie();
 
 
@@ -510,6 +530,7 @@ public class GameManager {
             }
             if (bomba.getCasDoVybuchu() == 0) {
                 lodHraca.uberHP(bomba.getDamage());
+                uberHpLode(bomba.getDamage());
                 bomba.znicenie();
                 znicene.add(bomba);
             }
@@ -567,7 +588,8 @@ public class GameManager {
                     if (bombarder.getHp() <= 0) {
                         znicene.add(bombarder);
                         bombarder.znicenie();
-                        this.skore += bombarder.getSkore();
+                        pridajSkore(bombarder.getSkore());
+
 
                     }
 
@@ -610,7 +632,8 @@ public class GameManager {
                     if (bombarder.getHp() <= 0) {
                         znicene.add(bombarder);
                         bombarder.znicenie();
-                        this.skore += bombarder.getSkore();
+                        pridajSkore(bombarder.getSkore());
+
 
                     }
 
@@ -653,7 +676,7 @@ public class GameManager {
                     if (stihacka.getHp() <= 0) {
                         znicene.add(stihacka);
                         stihacka.znicenie();
-                        this.skore += stihacka.getSkore();
+                        pridajSkore(stihacka.getSkore());
 
                     }
 
@@ -696,7 +719,8 @@ public class GameManager {
                     if (stihacka.getHp() <= 0) {
                         znicene.add(stihacka);
                         stihacka.znicenie();
-                        this.skore += stihacka.getSkore();
+                        pridajSkore(stihacka.getSkore());
+
 
                     }
 
@@ -765,6 +789,8 @@ public class GameManager {
         for (RaketaStihacky raketaStihacky : raketyStihaciek) {
             if (raketaStihacky.getRaketaY() > lodHraca.getPolohaY() - 20) {
                 lodHraca.uberHP(raketaStihacky.getDamage());
+                uberHpLode(raketaStihacky.getDamage());
+                uberHpLode(raketaStihacky.getDamage());
                 raketaStihacky.vybuch();
             }
         }
@@ -833,6 +859,7 @@ public class GameManager {
         for (GulkaStihacka gulkaStihacka : gulkyStihacky) {
             if (gulkaStihacka.getGulkaY() > lodHraca.getPolohaY() - 20) {
                 lodHraca.uberHP(gulkaStihacka.getDamage());
+                uberHpLode(gulkaStihacka.getDamage());
                 gulkaStihacka.vybuch();
             }
         }
@@ -860,6 +887,19 @@ public class GameManager {
             }
         }
     }
+
+    public void pridajSkore(int skore){
+        this.skore += skore;
+        this.plocha.nastavSkore(this.skore);
+        System.out.println("SKORE UPDATE: " + this.skore);
+    }
+
+    public void uberHpLode(int hp){
+        this.hpLode -= hp;
+        this.plocha.nastavHpLode(this.hpLode);
+        System.out.println("HP LODE UPDATE: " + this.hpLode);
+    }
+
 }
 
 

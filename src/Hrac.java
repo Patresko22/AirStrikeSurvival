@@ -4,20 +4,24 @@ import fri.shapesge.DataObrazku;
 
 public class Hrac {
     private Obrazok obrazokHraca;
-    int polohaHracaX = 250;
-    int polohaHracaY = 650;
+    private int polohaHracaX = 250;
+    private int polohaHracaY = 650;
     private GameManager gameManager;
     private int pocetZruseni = 2;
     private TypZbrane typZbrane;
+    private int raketometTimeOut = 30;
+    private boolean jeRaketometTimeOut = false;
+    private int gulometTimeOut = 10;
+    private boolean jeGulometTimeOut = false;
+
+
 
 
     public Hrac(GameManager gameManager){
 
         this.typZbrane = TypZbrane.GULOMET;
-
         this.polohaHracaX = 250;
         this.polohaHracaY = 650;
-
         this.obrazokHraca = new Obrazok("assets/HracZBRAN/hrac_zbran.png");
         this.obrazokHraca.zmenPolohu(250,650);
         this.obrazokHraca.zobraz();
@@ -31,9 +35,9 @@ public class Hrac {
 
 
     public void tik() {
-
-
+        kontrolaTimeOut();
     }
+
 
 
 
@@ -150,13 +154,44 @@ public class Hrac {
 
     public void aktivuj() {
         if (this.typZbrane == TypZbrane.RAKETOMET) {
-            Raketa raketa = new Raketa(getPolohaHracaX(), getPolohaHracaY());
-            this.gameManager.pridajRaketu(raketa);
-        }else {
-            Gulka gulka = new Gulka(getPolohaHracaX()+5, getPolohaHracaY()-10);
-            this.gameManager.pridajGulku(gulka);
+            if (this.raketometTimeOut == 30){
+                Raketa raketa = new Raketa(getPolohaHracaX(), getPolohaHracaY());
+                this.gameManager.pridajRaketu(raketa);
+                this.jeRaketometTimeOut = true;
+            }
+        }
+
+        if (this.typZbrane == TypZbrane.GULOMET) {
+            if (this.gulometTimeOut == 10) {
+                Gulka gulka = new Gulka(getPolohaHracaX() + 5, getPolohaHracaY() - 10);
+                this.gameManager.pridajGulku(gulka);
+                this.jeGulometTimeOut = true;
+            }
         }
     }
+
+    public void kontrolaTimeOut(){
+        if (this.jeRaketometTimeOut){
+            this.raketometTimeOut -= 1;
+            if (raketometTimeOut == 0){
+                this.raketometTimeOut = 30;
+                this.jeRaketometTimeOut = false;
+            }
+        }
+
+        if (this.jeGulometTimeOut){
+            this.gulometTimeOut -= 1;
+            if (gulometTimeOut == 0){
+                this.gulometTimeOut = 10;
+                this.jeGulometTimeOut = false;
+            }
+        }
+
+
+    }
+
+
+
 
 
 

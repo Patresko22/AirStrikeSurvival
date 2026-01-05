@@ -15,6 +15,7 @@ public class MaleKamikadze {
     private int casDoVybuchu = 70;
     private boolean vybuch = false;
     private boolean posunutePoVybuchu = false;
+    private int skore = 1;
 
 
 
@@ -27,7 +28,7 @@ public class MaleKamikadze {
         obrazokMaleKamikadze.zmenPolohu(polohaX, polohaY);
         obrazokMaleKamikadze.zobraz();
         new Manazer().spravujObjekt(this);
-        cielX = random.nextInt(polohaLodeXMinimalna, polohaLodeXMaximalna);
+        cielX = random.nextInt(polohaLodeXMinimalna + 50, polohaLodeXMaximalna - 110);
         cielY = polohaLodeY;
 
 
@@ -117,6 +118,10 @@ public class MaleKamikadze {
     public boolean getVybuch(){
         return this.vybuch;
     }
+    public int getSkore(){
+        return this.skore;
+    }
+
 
 
 

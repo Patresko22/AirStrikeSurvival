@@ -57,6 +57,10 @@ public class Raketa {
         return this.damage;
     }
 
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+
     public void uberCas(){
         this.casDoVybuchu -= 1;
     }

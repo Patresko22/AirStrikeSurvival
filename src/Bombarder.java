@@ -9,6 +9,7 @@ public class Bombarder {
     private boolean zhodenaBomba = false;
     private int casDoPreletenie = 100;
     private boolean jeZniceny = false;
+    private int skore = 3;
 
 
 
@@ -78,9 +79,13 @@ public class Bombarder {
         public boolean getJeZniceny(){
             return this.jeZniceny;
         }
+        public int getSkore(){
+            return this.skore;
+        }
 
 
-    }
+
+}
 
 
 

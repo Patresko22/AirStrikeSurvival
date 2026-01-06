@@ -1,3 +1,20 @@
-lietadla - https://jimhatama.itch.io/ww2-aircrafts
-pozadie - chatGPT
-lietadlovaLod - chatgpt
+Bomba.png -ChatGPT
+bombarder.png - https://jimhatama.itch.io/ww2-aircrafts
+endMenu.png - Patrik Samec and https://pngtree.com/freepng/fighter-jet-military-plane-vector_8794374.html
+gulka.png -ChatGPT
+hornyPanel.png - Patrik Samec and https://pngtree.com/freepng/fighter-jet-military-plane-vector_8794374.html
+hracGulomet.png -ChatGPT
+hracRaketomet.png -ChatGPT
+lod.jpg - ChatGPT
+maleKamikadze.png -  https://jimhatama.itch.io/ww2-aircrafts
+pozadie.jpg - ChatGPT
+raketa.png - ChatGPT
+raketaStihacky.png - ChatGPT
+startMenu.png - Patrik Samec and https://pngtree.com/freepng/fighter-jet-military-plane-vector_8794374.html
+stihacka.png - https://jimhatama.itch.io/ww2-aircrafts
+velkeKamikadze.png - Patrik Samec and https://pngtree.com/freepng/fighter-jet-military-plane-vector_8794374.html
+vybuch.png - ChatGPT
+vybuchBomby.png - ChatGPT
+vybuchGulky.png - ChatGPT
+vybuchRaketa.png - ChatGPT
+winMenu.png - Patrik Samec and https://pngtree.com/freepng/fighter-jet-military-plane-vector_8794374.html

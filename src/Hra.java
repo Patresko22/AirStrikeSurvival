@@ -22,7 +22,7 @@ public class Hra {
 
     public Hra() {
         HraciaPlocha plocha = new HraciaPlocha();
-        this.gameManager = new GameManager(plocha, 500);
+        this.gameManager = new GameManager(plocha, 350);
         this.startScreen = new StartScreen();
         Hrac hrac = new Hrac(this.gameManager, this, this.startScreen);
         this.gameManager.nastavHraca(hrac);

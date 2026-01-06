@@ -9,13 +9,13 @@ public enum TypZbraneStihacky {
      * Rakety - Stihacka striela rakety s vacsim damage ale aj s vacsim cooldown.
      * */
 
-    Rakety,
+    RAKETY,
 
     /*
      * Gulomet - Stihacka striela gulky s mensim damage ale aj s mensim cooldown.
      * */
 
-    Gulomet;
+    GULOMET;
 
     /*
      * Konstruktor enumu TypZbraneStihacky.

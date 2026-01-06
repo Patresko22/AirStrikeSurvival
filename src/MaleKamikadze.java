@@ -31,13 +31,13 @@ public class MaleKamikadze {
     * @param polohaY je pociatocna suradnica y lietadla.
     * */
 
-    public MaleKamikadze(int polohaY){
+    public MaleKamikadze(int polohaY) {
         //velkosť obrazka  45x35
         this.obrazokMaleKamikadze = new Obrazok("assets/maleKamikadze.png");
         Random random = new Random();
-        this.polohaX = random.nextInt(20, 450);
+        this.polohaX = random.nextInt(20,  450);
         this.polohaY = polohaY;
-        this.obrazokMaleKamikadze.zmenPolohu(this.polohaX, polohaY);
+        this.obrazokMaleKamikadze.zmenPolohu(this.polohaX,  polohaY);
         this.obrazokMaleKamikadze.zobraz();
         new Manazer().spravujObjekt(this);
         this.cielX = random.nextInt(this.polohaLodeXMinimalna + 50, this.polohaLodeXMaximalna - 110);
@@ -56,20 +56,20 @@ public class MaleKamikadze {
     public void tik() {
         Random random = new Random();
         int cislo = random.nextInt(0, 100);
-        if (this.vybuch == true){
+        if (this.vybuch) {
             return;
-        }else {
-            if(cislo < 25){
-                if (this.polohaX != this.cielX){
-                    if (this.polohaX < this.cielX){
+        } else {
+            if (cislo < 25) {
+                if (this.polohaX != this.cielX) {
+                    if (this.polohaX < this.cielX) {
                         this.obrazokMaleKamikadze.posunVodorovne(1);
                         this.polohaX += 1;
                     }
-                    if (this.polohaX > this.cielX){
+                    if (this.polohaX > this.cielX) {
                         this.obrazokMaleKamikadze.posunVodorovne(-1);
                         this.polohaX -= 1;
                     }
-                    if (this.polohaX == this.cielX){
+                    if (this.polohaX == this.cielX) {
                         this.obrazokMaleKamikadze.posunZvisle(1);
                         this.polohaY += 2;
                     }
@@ -112,7 +112,7 @@ public class MaleKamikadze {
     * @param ubrateHP je hodnota o ktoru ma znizit hp lietadla.
     *  */
 
-    public void uberHP ( int ubrateHP){
+    public void uberHP ( int ubrateHP) {
         this.hp -= ubrateHP;
     }
 
@@ -134,7 +134,7 @@ public class MaleKamikadze {
         this.obrazokMaleKamikadze.zmenObrazok("assets/vybuchBomby.png");
         this.obrazokMaleKamikadze.zobraz();
         this.vybuch = true;
-        if (!this.posunutePoVybuchu){
+        if (!this.posunutePoVybuchu) {
             this.obrazokMaleKamikadze.posunZvisle(10);
             this.posunutePoVybuchu = true;
         }
@@ -153,7 +153,7 @@ public class MaleKamikadze {
     * Ubereie cas do vybuchu o 1 tik.
     * */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoVybuchu -= 1;
     }
 
@@ -162,7 +162,7 @@ public class MaleKamikadze {
     * @return cas do vybuchu v tikoch
     * */
 
-    public int getCasDoVybuchu(){
+    public int getCasDoVybuchu() {
         return this.casDoVybuchu;
     }
 
@@ -171,7 +171,7 @@ public class MaleKamikadze {
     * @return vrati true ak vybuchuje, inak false.
     *  */
 
-    public boolean getVybuch(){
+    public boolean getVybuch() {
         return this.vybuch;
     }
 
@@ -180,7 +180,7 @@ public class MaleKamikadze {
     * @return vrati hodnotu skore.
     * */
 
-    public int getSkore(){
+    public int getSkore() {
         return this.skore;
     }
 }

@@ -23,11 +23,11 @@ public class GulkaStihacka {
      * @param y je pociatocna suradnica y
      * */
 
-    public GulkaStihacka(int x, int y){
+    public GulkaStihacka(int x, int y) {
         this.polohaX = x + 14;
         this.polohaY = y;
         this.obrazokGulky = new Obrazok("assets/gulka.png");
-        this.obrazokGulky.zmenPolohu(polohaX, polohaY);
+        this.obrazokGulky.zmenPolohu(this.polohaX, this.polohaY);
         this.obrazokGulky.zobraz();
         new Manazer().spravujObjekt(this);
     }
@@ -39,10 +39,10 @@ public class GulkaStihacka {
      * Je to kvôli tomu aby sa pri animacii vybuchu nepohybovala
      * */
 
-    public  void  tik(){
-        if (this.vybuch){
+    public  void  tik() {
+        if (this.vybuch) {
             return;
-        }else {
+        } else {
             this.obrazokGulky.posunZvisle(+10);
             this.polohaY += 10;
         }
@@ -53,7 +53,7 @@ public class GulkaStihacka {
      * @return poloha x gulky
      * */
 
-    public int getGulkaX(){
+    public int getGulkaX() {
         return this.polohaX;
     }
 
@@ -62,7 +62,7 @@ public class GulkaStihacka {
      * @return poloha y gulky
      * */
 
-    public int getGulkaY(){
+    public int getGulkaY() {
         return this.polohaY;
     }
 
@@ -72,7 +72,7 @@ public class GulkaStihacka {
      * Nastavi damage na 0
      * */
 
-    public void vybuch(){
+    public void vybuch() {
         this.vybuch = true;
         this.obrazokGulky.zmenObrazok("assets/vybuchGulky.png");
         this.obrazokGulky.zobraz();
@@ -83,7 +83,7 @@ public class GulkaStihacka {
      * Dokonci vybuch gulky tým že ju skryje
      * */
 
-    public void vybuchla(){
+    public void vybuchla() {
         this.obrazokGulky.skry();
         System.out.println("Gulka Stihacky Vybuchla");
     }
@@ -93,7 +93,7 @@ public class GulkaStihacka {
      * @return hodnota damage gulky
      * */
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
@@ -102,7 +102,7 @@ public class GulkaStihacka {
      * @param damage je nova hodnota
      * */
 
-    public void setDamage(int damage){
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
@@ -110,7 +110,7 @@ public class GulkaStihacka {
      * Znizi zostavajuci cas do vybuchu.
      * */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoVybuchu -= 1;
     }
 
@@ -119,7 +119,7 @@ public class GulkaStihacka {
      * @return vrati true ak vybuchla, inak false.
      * */
 
-    public boolean getVybuch(){
+    public boolean getVybuch() {
         return this.vybuch;
     }
 
@@ -128,7 +128,7 @@ public class GulkaStihacka {
      * @return cas do vybuchu v tikoch
      * */
 
-    public int getCasDoVybuchu(){
+    public int getCasDoVybuchu() {
         return this.casDoVybuchu;
     }
 }

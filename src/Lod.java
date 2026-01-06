@@ -18,9 +18,9 @@ public class Lod {
     * Vytvori lod, nastavi jej poziciu a zobrazi ju na obrazovke.
     * */
 
-    public Lod(){
+    public Lod() {
         this.pozadie = new Obrazok("assets/lod.jpg");
-        this.pozadie.zmenPolohu(polohaX,polohaY);
+        this.pozadie.zmenPolohu(this.polohaX, this.polohaY);
         this.pozadie.zobraz();
     }
 
@@ -29,7 +29,7 @@ public class Lod {
     * @return pocet hp lode.
     * */
 
-    public int getHp(){
+    public int getHp() {
         return this.hp;
     }
 
@@ -38,7 +38,7 @@ public class Lod {
     * @return pozicia x lode
     * */
 
-    public int getPolohaX(){
+    public int getPolohaX() {
         return this.polohaX;
     }
 
@@ -47,7 +47,7 @@ public class Lod {
      * @return pozicia y lode
      * */
 
-    public int getPolohaY(){
+    public int getPolohaY() {
         return this.polohaY;
     }
 
@@ -56,7 +56,7 @@ public class Lod {
     * @param ubratHp je pocet hp ktore ma ubrat.
     */
 
-    public void uberHP(int ubratHP){
+    public void uberHP(int ubratHP) {
         this.hp -= ubratHP;
     }
 
@@ -65,7 +65,7 @@ public class Lod {
     * @param hp je nova hodnota hp lode.
     * */
 
-    public void setHp(int hp){
+    public void setHp(int hp) {
         this.hp = hp;
     }
 }

@@ -20,14 +20,14 @@ public class Hra {
     * */
 
 
-    public Hra(){
+    public Hra() {
         HraciaPlocha plocha = new HraciaPlocha();
         this.gameManager = new GameManager(plocha, 500);
         this.startScreen = new StartScreen();
-        Hrac Hrac = new Hrac(gameManager,this, this.startScreen);
-        gameManager.nastavHraca(Hrac);
+        Hrac hrac = new Hrac(this.gameManager, this, this.startScreen);
+        this.gameManager.nastavHraca(hrac);
         this.manazer = new Manazer();
-        manazer.spravujObjekt(Hrac);
+        this.manazer.spravujObjekt(hrac);
     }
 
     /*
@@ -36,11 +36,11 @@ public class Hra {
     * Vytvori a zaregistruje vsetkych nepriatelov.
     * */
 
-    public void spustiLevel(){
+    public void spustiLevel() {
 
         Lod lod = new Lod();
-        gameManager.pridajLod(lod);
-        manazer.spravujObjekt(gameManager);
+        this.gameManager.pridajLod(lod);
+        this.manazer.spravujObjekt(this.gameManager);
 
         //--------RAID 1-----------------
         MaleKamikadze maleKamikadze = new MaleKamikadze(-230);
@@ -64,13 +64,13 @@ public class Hra {
         VelkeKamikadze velkeKamikadze = new VelkeKamikadze(-1000);
         this.gameManager.pridajVelkeKamikadze(velkeKamikadze);
 
-        Bombarder bombarder1 = new Bombarder(100,-1100);
+        Bombarder bombarder1 = new Bombarder(100, -1100);
         this.gameManager.pridajBombarder(bombarder1);
-        Bombarder bombarder2 = new Bombarder(300,-1150);
+        Bombarder bombarder2 = new Bombarder(300, -1150);
         this.gameManager.pridajBombarder(bombarder2);
 
 
-        Stihacka stihacka = new Stihacka(100 ,-1700);
+        Stihacka stihacka = new Stihacka(100 , -1700);
         this.gameManager.pridajStihacku(stihacka);
 
 
@@ -108,23 +108,23 @@ public class Hra {
         VelkeKamikadze velkeKamikadze3 = new VelkeKamikadze(-3000);
         this.gameManager.pridajVelkeKamikadze(velkeKamikadze3);
 
-        Bombarder bombarder3 = new Bombarder(200,-3500);
+        Bombarder bombarder3 = new Bombarder(200, -3500);
         this.gameManager.pridajBombarder(bombarder3);
 
-        Bombarder bombarder4 = new Bombarder(320,-3600);
+        Bombarder bombarder4 = new Bombarder(320, -3600);
         this.gameManager.pridajBombarder(bombarder4);
 
-        Bombarder bombarder5 = new Bombarder(420,-4000);
+        Bombarder bombarder5 = new Bombarder(420, -4000);
         this.gameManager.pridajBombarder(bombarder5);
 
 
-        Stihacka stihacka2 = new Stihacka(400 ,-5000);
+        Stihacka stihacka2 = new Stihacka(400 , -5000);
         this.gameManager.pridajStihacku(stihacka2);
 
-        Stihacka stihacka3 = new Stihacka(300 ,-5100);
+        Stihacka stihacka3 = new Stihacka(300 , -5100);
         this.gameManager.pridajStihacku(stihacka3);
 
-        Stihacka stihacka4 = new Stihacka(200 ,-5300);
+        Stihacka stihacka4 = new Stihacka(200 , -5300);
         this.gameManager.pridajStihacku(stihacka4);
 
 
@@ -148,16 +148,16 @@ public class Hra {
 
         //--------RAID 3-----------------
 
-        Stihacka stihacka5 = new Stihacka(100 ,-6300);
+        Stihacka stihacka5 = new Stihacka(100 , -6300);
         this.gameManager.pridajStihacku(stihacka5);
 
-        Stihacka stihacka6 = new Stihacka(300 ,-6700);
+        Stihacka stihacka6 = new Stihacka(300 , -6700);
         this.gameManager.pridajStihacku(stihacka6);
 
-        Bombarder bombarder6 = new Bombarder(200,-7000);
+        Bombarder bombarder6 = new Bombarder(200, -7000);
         this.gameManager.pridajBombarder(bombarder6);
 
-        Stihacka stihacka7 = new Stihacka(400 ,-7400);
+        Stihacka stihacka7 = new Stihacka(400 , -7400);
         this.gameManager.pridajStihacku(stihacka7);
 
         MaleKamikadze maleKamikadze8 = new MaleKamikadze(-8000);
@@ -178,22 +178,22 @@ public class Hra {
         MaleKamikadze maleKamikadze13 = new MaleKamikadze(-9300);
         this.gameManager.pridajMaleKamikadze(maleKamikadze13);
 
-        Bombarder bombarder7 = new Bombarder(420,-10000);
+        Bombarder bombarder7 = new Bombarder(420, -10000);
         this.gameManager.pridajBombarder(bombarder7);
 
-        Bombarder bombarder8 = new Bombarder(120,-10000);
+        Bombarder bombarder8 = new Bombarder(120, -10000);
         this.gameManager.pridajBombarder(bombarder8);
 
-        Bombarder bombarder9 = new Bombarder(300,-10400);
+        Bombarder bombarder9 = new Bombarder(300, -10400);
         this.gameManager.pridajBombarder(bombarder9);
 
-        Stihacka stihacka8 = new Stihacka(300 ,-11000);
+        Stihacka stihacka8 = new Stihacka(300 , -11000);
         this.gameManager.pridajStihacku(stihacka8);
 
-        Bombarder bombarder10 = new Bombarder(420,-11500);
+        Bombarder bombarder10 = new Bombarder(420, -11500);
         this.gameManager.pridajBombarder(bombarder10);
 
-        Bombarder bombarder11 = new Bombarder(100,-11700);
+        Bombarder bombarder11 = new Bombarder(100, -11700);
         this.gameManager.pridajBombarder(bombarder11);
 
         VelkeKamikadze velkeKamikadze4 = new VelkeKamikadze(-13000);
@@ -208,7 +208,7 @@ public class Hra {
         VelkeKamikadze velkeKamikadze7 = new VelkeKamikadze(-13800);
         this.gameManager.pridajVelkeKamikadze(velkeKamikadze7);
 
-        Stihacka stihacka9 = new Stihacka(300 ,-15000);
+        Stihacka stihacka9 = new Stihacka(300 , -15000);
         this.gameManager.pridajStihacku(stihacka9);
 
 

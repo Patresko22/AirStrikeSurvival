@@ -20,7 +20,7 @@ public class GameManager {
     private ArrayList<Stihacka> stihacky;
     private ArrayList<MaleKamikadze> maleKamikadzeLietadla;
     private ArrayList<VelkeKamikadze> velkeKamikadzeLietadla;
-    private ArrayList<Bomba> Bomby;
+    private ArrayList<Bomba> bomby;
     private Lod lodHraca;
     private ArrayList<RaketaStihacky> raketyStihaciek;
     private ArrayList<GulkaStihacka> gulkyStihacky;
@@ -38,7 +38,7 @@ public class GameManager {
     */
 
 
-    public GameManager(HraciaPlocha plocha, int zaciatocneHpLode){
+    public GameManager(HraciaPlocha plocha, int zaciatocneHpLode) {
         this.hpLode = zaciatocneHpLode;
         this.plocha = plocha;
         this.rakety = new ArrayList<>();
@@ -47,7 +47,7 @@ public class GameManager {
         this.stihacky = new ArrayList<>();
         this.maleKamikadzeLietadla = new ArrayList<>();
         this.velkeKamikadzeLietadla = new ArrayList<>();
-        this.Bomby = new ArrayList<>();
+        this.bomby = new ArrayList<>();
         this.raketyStihaciek = new ArrayList<>();
         this.gulkyStihacky = new ArrayList<>();
         this.plocha.nastavSkore(this.skore);
@@ -119,64 +119,64 @@ public class GameManager {
 
     public void tik() {
 
-        kontrolaRakety();
-        kontrolaGulky();
-        znicenieBombardera();
-        ubratieCasuBomby();
-        vybuchBomby();
+        this.kontrolaRakety();
+        this.kontrolaGulky();
+        this.znicenieBombardera();
+        this.ubratieCasuBomby();
+        this.vybuchBomby();
 
         //Uberanie Času lietadiel
-        ubratieCasuMaleKamikadze();
-        ubratieCasuVelkeKamikadze();
-        ubratieCasuBombardera();
+        this.ubratieCasuMaleKamikadze();
+        this.ubratieCasuVelkeKamikadze();
+        this.ubratieCasuBombardera();
 
 
         //Kontrola Času projektilov
-        kontrolaCasuRakety();
-        kontrolaCasuGulky();
+        this.kontrolaCasuRakety();
+        this.kontrolaCasuGulky();
 
 
         //Kontrola Kolizie s Lodou
-        kontrolaKolizieBombarderLod();
-        kontrolaKolizieMaleKamikadzeLod();
-        kontrolaKolizieVelkeKamikadzeLod();
+        this.kontrolaKolizieBombarderLod();
+        this.kontrolaKolizieMaleKamikadzeLod();
+        this.kontrolaKolizieVelkeKamikadzeLod();
 
 
         //Kontrola Kolizie Gulky
-        kontrolaKolizieGulkaMaleKamikadze();
-        kontrolaKolizieGulkaVelkeKamikadze();
-        kontrolaKolizieGulkaBombarder();
-        kontrolaKolizieGulkaStihacka();
+        this.kontrolaKolizieGulkaMaleKamikadze();
+        this.kontrolaKolizieGulkaVelkeKamikadze();
+        this.kontrolaKolizieGulkaBombarder();
+        this.kontrolaKolizieGulkaStihacka();
 
         //Kontrola Kolizie Rakety
-        kontrolaKolizieRaketaBombarder();
-        kontrolaKolizieRaketaMaleKam();
-        kontrolaKolizieRaketaVelkeKamikadze();
-        kontrolaKolizieRaketaStihacka();
+        this.kontrolaKolizieRaketaBombarder();
+        this.kontrolaKolizieRaketaMaleKam();
+        this.kontrolaKolizieRaketaVelkeKamikadze();
+        this.kontrolaKolizieRaketaStihacka();
 
         //Kontrola preletenia stihacky
-        kontrolaPreleteniaStihacky();
-        ubratieCasuStihacky();
-        znicenieStihacky();
+        this.kontrolaPreleteniaStihacky();
+        this.ubratieCasuStihacky();
+        this.znicenieStihacky();
 
 
         //Kontrola rakety stihacky
-        raketyStihacky();
-        kontrolaKolizieRaketyStihackyLode(lodHraca);
-        kontrolaCasuRaketyStihacky();
-        kontrolaKolizieRakiet();
-        kontrolaKolizieRaketyStihackyGulky();
+        this.raketyStihacky();
+        this.kontrolaKolizieRaketyStihackyLode(this.lodHraca);
+        this.kontrolaCasuRaketyStihacky();
+        this.kontrolaKolizieRakiet();
+        this.kontrolaKolizieRaketyStihackyGulky();
 
         //Kontrola gulky stihacky
-        gulkyStihacky();
-        kontrolaKolizieGulkyStihackyLode(lodHraca);
-        kontrolaCasuGulkyStihacky();
-        kontrolaKolizieRaketyGulkyStihacky();
-        kontrolaKolizieGulkyStihackyGulky();
+        this.gulkyStihacky();
+        this.kontrolaKolizieGulkyStihackyLode(this.lodHraca);
+        this.kontrolaCasuGulkyStihacky();
+        this.kontrolaKolizieRaketyGulkyStihacky();
+        this.kontrolaKolizieGulkyStihackyGulky();
 
 
         //Vyhodnotenie
-        if (!this.levelDokonceny && uzNiesuZiadneLietadla()){
+        if (!this.levelDokonceny && this.uzNiesuZiadneLietadla()) {
             this.levelDokonceny = true;
             WinScreen winScreen = new WinScreen(this.skore);
             this.hrac.zablokujPohyb();
@@ -333,13 +333,13 @@ public class GameManager {
         ArrayList<MaleKamikadze> znicene = new ArrayList<>();
         for (Raketa raketa : this.rakety) {
             for (MaleKamikadze maleKamikadze : this.maleKamikadzeLietadla) {
-                if (koliziaRaketaMaleKamikadze(raketa, maleKamikadze)) {
+                if (this.koliziaRaketaMaleKamikadze(raketa, maleKamikadze)) {
                     maleKamikadze.uberHP(raketa.getDamage());
                     raketa.vybuch();
                     if (maleKamikadze.getHp() <= 0) {
                         znicene.add(maleKamikadze);
                         maleKamikadze.znicenie();
-                        pridajSkore(maleKamikadze.getSkore());
+                        this.pridajSkore(maleKamikadze.getSkore());
                     }
                 }
             }
@@ -378,13 +378,13 @@ public class GameManager {
 
         for (Gulka gulka : this.gulky) {
             for (MaleKamikadze maleKamikadze : this.maleKamikadzeLietadla) {
-                if (koliziaGulkaMaleKamikadze(gulka, maleKamikadze)) {
+                if (this.koliziaGulkaMaleKamikadze(gulka, maleKamikadze)) {
                     maleKamikadze.uberHP(gulka.getDamage());
                     gulka.vybuch();
                     if (maleKamikadze.getHp() <= 0) {
                         znicene.add(maleKamikadze);
                         maleKamikadze.znicenie();
-                        pridajSkore(maleKamikadze.getSkore());
+                        this.pridajSkore(maleKamikadze.getSkore());
                     }
                 }
             }
@@ -420,12 +420,12 @@ public class GameManager {
         ArrayList<MaleKamikadze> znicene = new ArrayList<>();
 
         for (MaleKamikadze maleKamikadze : this.maleKamikadzeLietadla) {
-            if (koliziaMaleKamikadzeLod(this.lodHraca, maleKamikadze)) {
+            if (this.koliziaMaleKamikadzeLod(this.lodHraca, maleKamikadze)) {
                 maleKamikadze.animaciaVybuchu();
                 if (maleKamikadze.getCasDoVybuchu() < 0) {
                     znicene.add(maleKamikadze);
                     this.lodHraca.uberHP(maleKamikadze.getDamage());
-                    uberHpLode(maleKamikadze.getDamage());
+                    this.uberHpLode(maleKamikadze.getDamage());
                     maleKamikadze.znicenie();
                 }
             }
@@ -474,14 +474,14 @@ public class GameManager {
         ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
         for (Raketa raketa : this.rakety) {
             for (VelkeKamikadze velkeKamikadze : this.velkeKamikadzeLietadla) {
-                if (koliziaRaketaVelkeKamikadze(raketa, velkeKamikadze)) {
+                if (this.koliziaRaketaVelkeKamikadze(raketa, velkeKamikadze)) {
                     velkeKamikadze.uberHP(raketa.getDamage());
                     raketa.vybuch();
 
                     if (velkeKamikadze.getHp() <= 0) {
                         znicene.add(velkeKamikadze);
                         velkeKamikadze.znicenie();
-                        pridajSkore(velkeKamikadze.getSkore());
+                        this.pridajSkore(velkeKamikadze.getSkore());
                     }
                 }
             }
@@ -522,13 +522,13 @@ public class GameManager {
         ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
         for (Gulka gulka : this.gulky) {
             for (VelkeKamikadze velkeKamikadze : this.velkeKamikadzeLietadla) {
-                if (koliziaGulkaVelkeKamikadze(gulka, velkeKamikadze)) {
+                if (this.koliziaGulkaVelkeKamikadze(gulka, velkeKamikadze)) {
                     velkeKamikadze.uberHP(gulka.getDamage());
                     gulka.vybuch();
                     if (velkeKamikadze.getHp() <= 0) {
                         znicene.add(velkeKamikadze);
                         velkeKamikadze.znicenie();
-                        pridajSkore(velkeKamikadze.getSkore());
+                        this.pridajSkore(velkeKamikadze.getSkore());
                     }
                 }
             }
@@ -562,12 +562,12 @@ public class GameManager {
         ArrayList<VelkeKamikadze> znicene = new ArrayList<>();
 
         for (VelkeKamikadze velkeKamikadze : this.velkeKamikadzeLietadla) {
-            if (koliziaVelkeKamikadzeLod(this.lodHraca, velkeKamikadze)) {
+            if (this.koliziaVelkeKamikadzeLod(this.lodHraca, velkeKamikadze)) {
                 velkeKamikadze.animaciaVybuchu();
                 if (velkeKamikadze.getCasDoVybuchu() < 0) {
                     znicene.add(velkeKamikadze);
                     this.lodHraca.uberHP(velkeKamikadze.getDamage());
-                    uberHpLode(velkeKamikadze.getDamage());
+                    this.uberHpLode(velkeKamikadze.getDamage());
                     velkeKamikadze.znicenie();
                 }
             }
@@ -610,11 +610,11 @@ public class GameManager {
 
     public void kontrolaKolizieBombarderLod() {
         for (Bombarder bombarder : this.bombardery) {
-            if (koliziaBombarderLod(this.lodHraca, bombarder)) {
+            if (this.koliziaBombarderLod(this.lodHraca, bombarder)) {
                 if (!bombarder.getZhodenaBomba()) {
                     Bomba bomba = new Bomba(bombarder.getPolohaX() + 30, bombarder.getPolohaY() + 70);
                     bombarder.zhodBombu();
-                    this.Bomby.add(bomba);
+                    this.bomby.add(bomba);
                 }
             }
         }
@@ -626,7 +626,7 @@ public class GameManager {
     * */
 
     public void ubratieCasuBomby() {
-        for (Bomba bomba : this.Bomby) {
+        for (Bomba bomba : this.bomby) {
             bomba.uberCas();
         }
     }
@@ -638,18 +638,18 @@ public class GameManager {
 
     public void vybuchBomby() {
         ArrayList<Bomba> znicene = new ArrayList<>();
-        for (Bomba bomba : this.Bomby) {
+        for (Bomba bomba : this.bomby) {
             if (bomba.getCasDoVybuchu() == 50) {
                 bomba.zmenObrazokNavybuch();
             }
             if (bomba.getCasDoVybuchu() == 0) {
                 this.lodHraca.uberHP(bomba.getDamage());
-                uberHpLode(bomba.getDamage());
+                this.uberHpLode(bomba.getDamage());
                 bomba.znicenie();
                 znicene.add(bomba);
             }
         }
-        this.Bomby.removeAll(znicene);
+        this.bomby.removeAll(znicene);
     }
 
 
@@ -712,13 +712,13 @@ public class GameManager {
         ArrayList<Bombarder> znicene = new ArrayList<>();
         for (Raketa raketa : this.rakety) {
             for (Bombarder bombarder : this.bombardery) {
-                if (koliziaRaketaBombarder(raketa, bombarder)) {
+                if (this.koliziaRaketaBombarder(raketa, bombarder)) {
                     bombarder.uberHP(raketa.getDamage());
                     raketa.vybuch();
                     if (bombarder.getHp() <= 0) {
                         znicene.add(bombarder);
                         bombarder.znicenie();
-                        pridajSkore(bombarder.getSkore());
+                        this.pridajSkore(bombarder.getSkore());
                     }
                 }
             }
@@ -753,13 +753,13 @@ public class GameManager {
         ArrayList<Bombarder> znicene = new ArrayList<>();
         for (Gulka gulka : this.gulky) {
             for (Bombarder bombarder : this.bombardery) {
-                if (koliziaGulkaBombarder(gulka, bombarder)) {
+                if (this.koliziaGulkaBombarder(gulka, bombarder)) {
                     bombarder.uberHP(gulka.getDamage());
                     gulka.vybuch();
                     if (bombarder.getHp() <= 0) {
                         znicene.add(bombarder);
                         bombarder.znicenie();
-                        pridajSkore(bombarder.getSkore());
+                        this.pridajSkore(bombarder.getSkore());
                     }
                 }
             }
@@ -794,13 +794,13 @@ public class GameManager {
         ArrayList<Stihacka> znicene = new ArrayList<>();
         for (Raketa raketa : this.rakety) {
             for (Stihacka stihacka : this.stihacky) {
-                if (koliziaRaketaStihacka(raketa, stihacka)) {
+                if (this.koliziaRaketaStihacka(raketa, stihacka)) {
                     stihacka.uberHP(raketa.getDamage());
                     raketa.vybuch();
                     if (stihacka.getHp() <= 0) {
                         znicene.add(stihacka);
                         stihacka.znicenie();
-                        pridajSkore(stihacka.getSkore());
+                        this.pridajSkore(stihacka.getSkore());
                     }
                 }
             }
@@ -833,13 +833,13 @@ public class GameManager {
         ArrayList<Stihacka> znicene = new ArrayList<>();
         for (Gulka gulka : this.gulky) {
             for (Stihacka stihacka : this.stihacky) {
-                if (koliziaGulkaStihacka(gulka, stihacka)) {
+                if (this.koliziaGulkaStihacka(gulka, stihacka)) {
                     stihacka.uberHP(gulka.getDamage());
                     gulka.vybuch();
                     if (stihacka.getHp() <= 0) {
                         znicene.add(stihacka);
                         stihacka.znicenie();
-                        pridajSkore(stihacka.getSkore());
+                        this.pridajSkore(stihacka.getSkore());
                     }
                 }
             }
@@ -927,7 +927,7 @@ public class GameManager {
         for (RaketaStihacky raketaStihacky : this.raketyStihaciek) {
             if (raketaStihacky.getRaketaY() > lodHraca.getPolohaY() - 20) {
                 lodHraca.uberHP(raketaStihacky.getDamage());
-                uberHpLode(raketaStihacky.getDamage());
+                this.uberHpLode(raketaStihacky.getDamage());
                 raketaStihacky.vybuch();
             }
         }
@@ -938,10 +938,10 @@ public class GameManager {
     * Pri strete necha obe rakety vybuchnut.
     * */
 
-    public void kontrolaKolizieRakiet(){
-        for (RaketaStihacky raketaStihacky : this.raketyStihaciek){
-            for (Raketa raketa : this.rakety){
-                if (Math.abs(raketaStihacky.getRaketaY() - raketa.getRaketaY()) < 10 && Math.abs(raketaStihacky.getRaketaX() - raketa.getRaketaX()) < 10){
+    public void kontrolaKolizieRakiet() {
+        for (RaketaStihacky raketaStihacky : this.raketyStihaciek) {
+            for (Raketa raketa : this.rakety) {
+                if (Math.abs(raketaStihacky.getRaketaY() - raketa.getRaketaY()) < 10 && Math.abs(raketaStihacky.getRaketaX() - raketa.getRaketaX()) < 10) {
                     raketa.vybuch();
                     raketaStihacky.vybuch();
                 }
@@ -954,10 +954,10 @@ public class GameManager {
     * Pri strete necha raketu stihacky a aj gulku hraca vybuchnut.
     * */
 
-    public void kontrolaKolizieRaketyStihackyGulky(){
-        for (Gulka gulka : this.gulky){
-            for (RaketaStihacky raketaStihacky : this.raketyStihaciek){
-            if (Math.abs(gulka.getGulkaY() - raketaStihacky.getRaketaY()) < 10 && Math.abs(gulka.getGulkaX() - raketaStihacky.getRaketaX()) < 10){
+    public void kontrolaKolizieRaketyStihackyGulky() {
+        for (Gulka gulka : this.gulky) {
+            for (RaketaStihacky raketaStihacky : this.raketyStihaciek) {
+                if (Math.abs(gulka.getGulkaY() - raketaStihacky.getRaketaY()) < 10 && Math.abs(gulka.getGulkaX() - raketaStihacky.getRaketaX()) < 10) {
                     raketaStihacky.vybuch();
                     gulka.vybuch();
                 }
@@ -1004,7 +1004,7 @@ public class GameManager {
         for (GulkaStihacka gulkaStihacka : this.gulkyStihacky) {
             if (gulkaStihacka.getGulkaY() > lodHraca.getPolohaY() - 20) {
                 lodHraca.uberHP(gulkaStihacka.getDamage());
-                uberHpLode(gulkaStihacka.getDamage());
+                this.uberHpLode(gulkaStihacka.getDamage());
                 gulkaStihacka.vybuch();
             }
         }
@@ -1015,10 +1015,10 @@ public class GameManager {
      * Pri strete necha raketu hraca a aj gulku stihacky vybuchnut.
      * */
 
-    public void kontrolaKolizieRaketyGulkyStihacky(){
-        for (GulkaStihacka gulkaStihacka : this.gulkyStihacky){
-            for (Raketa raketa : this.rakety){
-                if (Math.abs(gulkaStihacka.getGulkaY() - raketa.getRaketaY()) < 10 && Math.abs(gulkaStihacka.getGulkaX() - raketa.getRaketaX()) < 10){
+    public void kontrolaKolizieRaketyGulkyStihacky() {
+        for (GulkaStihacka gulkaStihacka : this.gulkyStihacky) {
+            for (Raketa raketa : this.rakety) {
+                if (Math.abs(gulkaStihacka.getGulkaY() - raketa.getRaketaY()) < 10 && Math.abs(gulkaStihacka.getGulkaX() - raketa.getRaketaX()) < 10) {
                     raketa.vybuch();
                     gulkaStihacka.vybuch();
                 }
@@ -1031,10 +1031,10 @@ public class GameManager {
      * Pri strete necha obe gulky vybuchnut.
      * */
 
-    public void kontrolaKolizieGulkyStihackyGulky(){
-        for (Gulka gulka : this.gulky){
-            for (GulkaStihacka gulkaStihacka : this.gulkyStihacky){
-                if (Math.abs(gulka.getGulkaY() - gulkaStihacka.getGulkaY()) < 10 && Math.abs(gulka.getGulkaX() - gulkaStihacka.getGulkaX()) < 10){
+    public void kontrolaKolizieGulkyStihackyGulky() {
+        for (Gulka gulka : this.gulky) {
+            for (GulkaStihacka gulkaStihacka : this.gulkyStihacky) {
+                if (Math.abs(gulka.getGulkaY() - gulkaStihacka.getGulkaY()) < 10 && Math.abs(gulka.getGulkaX() - gulkaStihacka.getGulkaX()) < 10) {
                     gulkaStihacka.vybuch();
                     gulka.vybuch();
                 }
@@ -1047,7 +1047,7 @@ public class GameManager {
     * @param skore je pocet skore ktore ma k celkovemu skore pridat.
     * */
 
-    public void pridajSkore(int skore){
+    public void pridajSkore(int skore) {
         this.skore += skore;
         this.plocha.nastavSkore(this.skore);
     }
@@ -1056,7 +1056,7 @@ public class GameManager {
     * Odoberie hp lode a aktualizuje zobrazenie na hracej ploche.
     * */
 
-    public void uberHpLode(int hp){
+    public void uberHpLode(int hp) {
         this.hpLode -= hp;
         this.plocha.nastavHpLode(this.hpLode);
     }
@@ -1065,7 +1065,7 @@ public class GameManager {
     * Informuje ci bol level uspesne dokonceny v pripade ze už niesu ziadne nepriatelske lietadla.
     * @return vrati true ak je level dokonceny, inak false*/
 
-    public boolean jeLevelDokonceny(){
+    public boolean jeLevelDokonceny() {
         return this.levelDokonceny;
     }
 
@@ -1073,7 +1073,7 @@ public class GameManager {
     * Zisti ci uz niesu v hre ziadne nepriatelske lietadla.
     * @return vrati true ak su vsetky zoznami lietadiel prazdne, inak false.*/
 
-    private boolean uzNiesuZiadneLietadla(){
+    private boolean uzNiesuZiadneLietadla() {
         return this.maleKamikadzeLietadla.isEmpty() && this.velkeKamikadzeLietadla.isEmpty() && this.bombardery.isEmpty() && this.stihacky.isEmpty();
     }
 
@@ -1082,7 +1082,7 @@ public class GameManager {
     * @param hrac je objekt hrac
     * */
 
-    public void nastavHraca(Hrac hrac){
+    public void nastavHraca(Hrac hrac) {
         this.hrac = hrac;
     }
 }

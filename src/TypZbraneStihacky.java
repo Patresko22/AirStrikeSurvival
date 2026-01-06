@@ -21,7 +21,7 @@ public enum TypZbraneStihacky {
      * Konstruktor enumu TypZbraneStihacky.
      * */
 
-    TypZbraneStihacky(){
+    TypZbraneStihacky() {
     }
 
 }

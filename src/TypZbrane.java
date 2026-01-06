@@ -20,7 +20,7 @@ public enum TypZbrane {
     * Konstruktor enumu TypZbrane.
     * */
 
-    TypZbrane(){
+    TypZbrane() {
     }
 
 }

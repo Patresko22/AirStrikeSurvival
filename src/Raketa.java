@@ -22,11 +22,11 @@ public class Raketa {
     * @param y je pociatocna suradnica y pozicie rakety
     * */
 
-    public Raketa(int x, int y){
+    public Raketa(int x, int y) {
         this.polohaX = x + 14;
         this.polohaY = y;
         this.obrazokRakety = new Obrazok("assets/raketa.png");
-        this.obrazokRakety.zmenPolohu(polohaX, polohaY);
+        this.obrazokRakety.zmenPolohu(this.polohaX, this.polohaY);
         this.obrazokRakety.zobraz();
         new Manazer().spravujObjekt(this);
     }
@@ -37,10 +37,10 @@ public class Raketa {
     * Ak uz vybuchla tak sa dalej nepohybuje.
     * */
 
-    public  void  tik(){
-        if (this.vybuch){
+    public  void  tik() {
+        if (this.vybuch) {
             return;
-        }else {
+        } else {
             this.obrazokRakety.posunZvisle(-7);
             this.polohaY -= 7;
         }
@@ -51,7 +51,7 @@ public class Raketa {
     * @return vrati poziciu x rakety.
     * */
 
-    public int getRaketaX(){
+    public int getRaketaX() {
         return this.polohaX;
     }
 
@@ -60,7 +60,7 @@ public class Raketa {
      * @return vrati poziciu y rakety.
      * */
 
-    public int getRaketaY(){
+    public int getRaketaY() {
         return this.polohaY;
     }
 
@@ -71,7 +71,7 @@ public class Raketa {
     * Nastavi damage na 0
     * */
 
-    public void vybuch(){
+    public void vybuch() {
         this.vybuch = true;
         this.obrazokRakety.zmenObrazok("assets/vybuchRaketa.png");
         this.obrazokRakety.zobraz();
@@ -82,7 +82,7 @@ public class Raketa {
     * Dokonci vybuch rakety tym ze ju skryje.
     * */
 
-    public void vybuchla(){
+    public void vybuchla() {
         this.obrazokRakety.skry();
         System.out.println("Raketa Vybuchla");
     }
@@ -92,7 +92,7 @@ public class Raketa {
     * @return hodnota damage rakety
     * */
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
@@ -101,7 +101,7 @@ public class Raketa {
     * @param damage je hodnota na aku ma damage rakety zmenit.
     * */
 
-    public void setDamage(int damage){
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
@@ -109,7 +109,7 @@ public class Raketa {
     * Uberie cas do vybuchu rakety o 1 tik.
     * */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoVybuchu -= 1;
     }
 
@@ -118,7 +118,7 @@ public class Raketa {
     * @return vrati true ak vybuchla, inak false.
     * */
 
-    public boolean getVybuch(){
+    public boolean getVybuch() {
         return this.vybuch;
     }
 
@@ -127,7 +127,7 @@ public class Raketa {
     * @return vrati cas do vybuchu rakety v tikoch
     * */
 
-    public int getCasDoVybuchu(){
+    public int getCasDoVybuchu() {
         return this.casDoVybuchu;
     }
 }

@@ -29,12 +29,12 @@ public class Hrac {
     * @param startScreen je startovacia obrazovka ktora sa po spusteni hry skryje.
     * */
 
-    public Hrac(GameManager gameManager, Hra hra, StartScreen startScreen){
+    public Hrac(GameManager gameManager, Hra hra, StartScreen startScreen) {
         this.typZbrane = TypZbrane.GULOMET;
         this.polohaHracaX = 250;
         this.polohaHracaY = 650;
         this.obrazokHraca = new Obrazok("assets/hracGulomet.png");
-        this.obrazokHraca.zmenPolohu(250,650);
+        this.obrazokHraca.zmenPolohu(250, 650);
         this.gameManager = gameManager;
         this.hra = hra;
         this.startScreen = startScreen;
@@ -48,7 +48,7 @@ public class Hrac {
     * */
 
     public void tik() {
-        kontrolaTimeOut();
+        this.kontrolaTimeOut();
     }
 
     /*
@@ -57,7 +57,7 @@ public class Hrac {
     * Nastavene na 2.
     * */
 
-    public void zrus(){
+    public void zrus() {
         this.pocetZruseni -= 1;
         if (this.pocetZruseni == 0) {
             System.exit(0);
@@ -70,20 +70,20 @@ public class Hrac {
     * */
 
     public void posunVpravo() {
-        if (!zablokovanyPohyb){
-            if(getPolohaHracaX() == 470 ||
-                    getPolohaHracaY() == 630 && getPolohaHracaX() == 390 ||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 420 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 440 ||
-                    getPolohaHracaY() == 660 && getPolohaHracaX() == 450 ||
-                    getPolohaHracaY() == 670 && getPolohaHracaX() == 460
+        if (!this.zablokovanyPohyb) {
+            if (this.getPolohaHracaX() == 470 ||
+                    this.getPolohaHracaY() == 630 && this.getPolohaHracaX() == 390 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 420 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 440 ||
+                    this.getPolohaHracaY() == 660 && this.getPolohaHracaX() == 450 ||
+                    this.getPolohaHracaY() == 670 && this.getPolohaHracaX() == 460
 
-            ){
-
+                ) {
+                return;
             } else {
                 this.obrazokHraca.posunVodorovne(10);
                 this.polohaHracaX += 10;
-                System.out.println("X:" + polohaHracaX);
+                System.out.println("X:" + this.polohaHracaX);
             }
         }
 
@@ -95,13 +95,15 @@ public class Hrac {
      * */
 
     public void posunVlavo() {
-        if (!this.zablokovanyPohyb){
-            if(getPolohaHracaX() == -10 ||
-                    getPolohaHracaY() == 630 && getPolohaHracaX() == 50 ||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 30 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 10 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 0
-            ){} else{
+        if (!this.zablokovanyPohyb) {
+            if (this.getPolohaHracaX() == -10 ||
+                    this.getPolohaHracaY() == 630 && this.getPolohaHracaX() == 50 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 30 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 10 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 0
+            ) {
+                return;
+            } else {
                 this.obrazokHraca.posunVodorovne(-10);
                 this.polohaHracaX -= 10;
                 System.out.println("X:" + this.polohaHracaX);
@@ -118,30 +120,31 @@ public class Hrac {
 
     public void posunHore() {
 
-        if (!this.zablokovanyPohyb){
-            if(this.polohaHracaY < 640 ||
+        if (!this.zablokovanyPohyb) {
+            if (this.polohaHracaY < 640 ||
 
                     //Lava
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 40 ||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 30 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 20 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 10 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 0  ||
-                    getPolohaHracaY() == 660 && getPolohaHracaX() == -10||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 40 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 30 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 20 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 10 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 0  ||
+                    this.getPolohaHracaY() == 660 && this.getPolohaHracaX() == -10 ||
 
                     //Prava
-                    getPolohaHracaY() == 630 && getPolohaHracaX() == 390||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 400 ||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 410 ||
-                    getPolohaHracaY() == 640 && getPolohaHracaX() == 420 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 430 ||
-                    getPolohaHracaY() == 650 && getPolohaHracaX() == 440 ||
-                    getPolohaHracaY() == 660 && getPolohaHracaX() == 450 ||
-                    getPolohaHracaY() == 670 && getPolohaHracaX() == 460 ||
-                    getPolohaHracaY() == 680 && getPolohaHracaX() == 470
+                    this.getPolohaHracaY() == 630 && this.getPolohaHracaX() == 390 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 400 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 410 ||
+                    this.getPolohaHracaY() == 640 && this.getPolohaHracaX() == 420 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 430 ||
+                    this.getPolohaHracaY() == 650 && this.getPolohaHracaX() == 440 ||
+                    this.getPolohaHracaY() == 660 && this.getPolohaHracaX() == 450 ||
+                    this.getPolohaHracaY() == 670 && this.getPolohaHracaX() == 460 ||
+                    this.getPolohaHracaY() == 680 && this.getPolohaHracaX() == 470
 
             ) {
-            }else {
+                return;
+            } else {
                 this.obrazokHraca.posunZvisle(-10);
                 this.polohaHracaY -= 10;
                 System.out.println("Y:" + this.polohaHracaY);
@@ -154,8 +157,8 @@ public class Hrac {
      * alebo nieje na zakazanej pozicii. (okraj lode)*/
 
     public void posunDole() {
-        if (!this.zablokovanyPohyb){
-            if (getPolohaHracaY() != 680) {
+        if (!this.zablokovanyPohyb) {
+            if (this.getPolohaHracaY() != 680) {
                 this.obrazokHraca.posunZvisle(+10);
                 this.polohaHracaY += 10;
                 System.out.println("Y:" + this.polohaHracaY);
@@ -168,7 +171,7 @@ public class Hrac {
     * @return suradnica x polohy hraca
     * */
 
-    public int getPolohaHracaX(){
+    public int getPolohaHracaX() {
         return this.polohaHracaX;
     }
 
@@ -177,7 +180,7 @@ public class Hrac {
      * @return suradnica y polohy hraca
      * */
 
-    public int getPolohaHracaY(){
+    public int getPolohaHracaY() {
         return this.polohaHracaY;
     }
 
@@ -187,12 +190,12 @@ public class Hrac {
     * Aktualizuje podla toho obrazok hraca.
     * */
 
-    public void zmenZbran(){
-        if (this.typZbrane == TypZbrane.GULOMET){
+    public void zmenZbran() {
+        if (this.typZbrane == TypZbrane.GULOMET) {
             this.typZbrane = TypZbrane.RAKETOMET;
             this.obrazokHraca.zmenObrazok("assets/hracRaketomet.png");
             this.obrazokHraca.zobraz();
-        }else {
+        } else {
             this.typZbrane = TypZbrane.GULOMET;
             this.obrazokHraca.zmenObrazok("assets/hracGulomet.png");
             this.obrazokHraca.zobraz();
@@ -206,17 +209,17 @@ public class Hrac {
     * */
 
     public void aktivuj() {
-        if (!this.zablokovanyPohyb){
+        if (!this.zablokovanyPohyb) {
             if (this.typZbrane == TypZbrane.RAKETOMET) {
-                if (this.raketometTimeOut == 30){
-                    Raketa raketa = new Raketa(getPolohaHracaX(), getPolohaHracaY());
+                if (this.raketometTimeOut == 30) {
+                    Raketa raketa = new Raketa(this.getPolohaHracaX(), this.getPolohaHracaY());
                     this.gameManager.pridajRaketu(raketa);
                     this.jeRaketometTimeOut = true;
                 }
             }
             if (this.typZbrane == TypZbrane.GULOMET) {
                 if (this.gulometTimeOut == 10) {
-                    Gulka gulka = new Gulka(getPolohaHracaX() + 5, getPolohaHracaY() - 10);
+                    Gulka gulka = new Gulka(this.getPolohaHracaX() + 5, this.getPolohaHracaY() - 10);
                     this.gameManager.pridajGulku(gulka);
                     this.jeGulometTimeOut = true;
                 }
@@ -230,18 +233,18 @@ public class Hrac {
     * moze vystrelit.
     * */
 
-    public void kontrolaTimeOut(){
-        if (this.jeRaketometTimeOut){
+    public void kontrolaTimeOut() {
+        if (this.jeRaketometTimeOut) {
             this.raketometTimeOut -= 1;
-            if (this.raketometTimeOut == 0){
+            if (this.raketometTimeOut == 0) {
                 this.raketometTimeOut = 30;
                 this.jeRaketometTimeOut = false;
             }
         }
 
-        if (this.jeGulometTimeOut){
+        if (this.jeGulometTimeOut) {
             this.gulometTimeOut -= 1;
-            if (this.gulometTimeOut == 0){
+            if (this.gulometTimeOut == 0) {
                 this.gulometTimeOut = 10;
                 this.jeGulometTimeOut = false;
             }
@@ -252,7 +255,7 @@ public class Hrac {
     * Zablokuje pohyb hraca.
     * */
 
-    public void zablokujPohyb(){
+    public void zablokujPohyb() {
         this.zablokovanyPohyb = true;
     }
 
@@ -262,8 +265,8 @@ public class Hrac {
     * */
 
 
-    public void start(){
-        if (this.zacatHru){
+    public void start() {
+        if (this.zacatHru) {
             return;
         }
         this.zacatHru = true;

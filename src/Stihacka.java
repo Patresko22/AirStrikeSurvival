@@ -37,20 +37,20 @@ public class Stihacka {
     public Stihacka(int polohaX, int polohaY) {
         Random random = new Random();
 
-        int typZbrane = random.nextInt(0,3);
-        if (typZbrane < 2){
-            this.pocetStrielRakiet = random.nextInt(2, 5);
+        int typZbrane = random.nextInt(0, 3);
+        if (typZbrane < 2) {
+            this.pocetStrielRakiet = random.nextInt(2,  5);
             this.pocetStrielGuliek = 0;
             System.out.println("Stihacka ma rakiet: " + this.pocetStrielRakiet );
             this.typZbraneStihacky = TypZbraneStihacky.Rakety;
         }
-        if (typZbrane == 2){
-            this.pocetStrielGuliek = random.nextInt(7, 15);
+        if (typZbrane == 2) {
+            this.pocetStrielGuliek = random.nextInt(7,  15);
             this.pocetStrielRakiet = 0;
             System.out.println("Stihacka ma guliek: " + this.pocetStrielGuliek );
             this.typZbraneStihacky = TypZbraneStihacky.Gulomet;
         }
-        this.poziciaYnaAktivovanieZbrane = random.nextInt(0, 300);
+        this.poziciaYnaAktivovanieZbrane = random.nextInt(0,  300);
         //velkosť obrazka je 60 x 50
         this.obrazokStihacky = new Obrazok("assets/Stihacka.png");
         this.polohaX = polohaX;
@@ -108,7 +108,7 @@ public class Stihacka {
      */
 
 
-    public void uberHP ( int ubrateHP){
+    public void uberHP ( int ubrateHP) {
         this.hp -= ubrateHP;
     }
 
@@ -126,7 +126,7 @@ public class Stihacka {
      * @return cas do preletenia v tikoch.
      */
 
-    public int getCasDoPreletenie(){
+    public int getCasDoPreletenie() {
         return this.casDoPreletenie;
     }
 
@@ -134,7 +134,7 @@ public class Stihacka {
      * Uberie cas do preletenia o 1 tik.
      */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoPreletenie -= 1;
     }
 
@@ -143,7 +143,7 @@ public class Stihacka {
      * @return vrati true ak je stihacka znicena, inak false
      */
 
-    public boolean getJeZniceny(){
+    public boolean getJeZniceny() {
         return this.jeZniceny;
     }
 
@@ -152,7 +152,7 @@ public class Stihacka {
     * @return vrati pocet striel guliek.
     * */
 
-    public int getPocetStrielGuliek(){
+    public int getPocetStrielGuliek() {
         return this.pocetStrielGuliek;
     }
 
@@ -161,7 +161,7 @@ public class Stihacka {
      * @return vrati pocet striel rakiet.
      * */
 
-    public int getPocetStrielRakiet(){
+    public int getPocetStrielRakiet() {
         return  this.pocetStrielRakiet;
     }
 
@@ -171,7 +171,7 @@ public class Stihacka {
     * */
 
 
-    public int getTimeOutRakiet(){
+    public int getTimeOutRakiet() {
         return  this.timeOutRakiet;
     }
 
@@ -179,9 +179,9 @@ public class Stihacka {
     * Uberie timeout rakiet o 1 tik a pri hodnote 0 sa vrati na pociatocnu hodnotu.
     * */
 
-    public void uberTimeOutRakiet(){
+    public void uberTimeOutRakiet() {
         this.timeOutRakiet -= 1;
-        if (this.timeOutRakiet < 1){
+        if (this.timeOutRakiet < 1) {
             this.timeOutRakiet = 60;
         }
     }
@@ -190,9 +190,9 @@ public class Stihacka {
      * Uberie timeout guliek o 1 tik a pri hodnote 0 sa vrati na pociatocnu hodnotu.
      * */
 
-    public void uberTimeOutGuliek(){
+    public void uberTimeOutGuliek() {
         this.timeOutGuliek -= 1;
-        if (this.timeOutGuliek < 1){
+        if (this.timeOutGuliek < 1) {
             this.timeOutGuliek = 8;
         }
     }
@@ -203,7 +203,7 @@ public class Stihacka {
     * */
 
 
-    public boolean getAktivujZbran(){
+    public boolean getAktivujZbran() {
         return this.aktivujZbran;
     }
 
@@ -211,7 +211,7 @@ public class Stihacka {
      * Aktivuje zbrane stihacky.
      * */
 
-    public void aktivujZbran(){
+    public void aktivujZbran() {
         this.aktivujZbran = true;
     }
 
@@ -220,7 +220,7 @@ public class Stihacka {
     * @return vrati suradnicu y na aktivovanie zbrani.
     * */
 
-    public int getPoziciaYnaAktivovanieZbrane(){
+    public int getPoziciaYnaAktivovanieZbrane() {
         return this.poziciaYnaAktivovanieZbrane;
     }
 
@@ -228,7 +228,7 @@ public class Stihacka {
     * Uberie pocet rakiet stihacky.
     * */
 
-    public void uberRaketu(){
+    public void uberRaketu() {
         this.pocetStrielRakiet -= 1;
     }
 
@@ -236,7 +236,7 @@ public class Stihacka {
      * Uberie pocet guliek stihacky.
      * */
 
-    public void uberGulku(){
+    public void uberGulku() {
         this.pocetStrielGuliek -= 1;
     }
 
@@ -246,7 +246,7 @@ public class Stihacka {
      * */
 
 
-    public int getTimeOutGuliek(){
+    public int getTimeOutGuliek() {
         return this.timeOutGuliek;
     }
 
@@ -255,7 +255,7 @@ public class Stihacka {
     * @return vrati true ak preletela, inak false.
     * */
 
-    public boolean getPreletelaLod(){
+    public boolean getPreletelaLod() {
         return this.preletelaLod;
     }
 
@@ -264,7 +264,7 @@ public class Stihacka {
     * */
 
 
-    public void preletelaLod(){
+    public void preletelaLod() {
         this.preletelaLod = true;
     }
 
@@ -273,7 +273,7 @@ public class Stihacka {
      * @return hodnota skore stihacky
      */
 
-    public int getSkore(){
+    public int getSkore() {
         return this.skore;
     }
 }

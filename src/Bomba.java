@@ -22,7 +22,7 @@ public class Bomba {
     * @param polohaY je suradnica y kde sa bomba zobrazí.
     */
 
-    public Bomba(int polohaX, int polohaY){
+    public Bomba(int polohaX, int polohaY) {
         this.polohaX = polohaX;
         this.polohaY = polohaY;
         this.obrazokBomby = new Obrazok("assets/Bomba.png");
@@ -38,7 +38,7 @@ public class Bomba {
     * pre dalsiu skalovatelnost projektu ktorú mam v pláne.
     */
 
-    public void tik(){
+    public void tik() {
 
 
     }
@@ -47,7 +47,7 @@ public class Bomba {
     * Znizi zostavajuci cas do vybuchu o 1 tik.
     */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoVybuchu -= 1;
     }
 
@@ -56,7 +56,7 @@ public class Bomba {
     * @return pocet tikov do vybuchu.
     */
 
-    public int getCasDoVybuchu(){
+    public int getCasDoVybuchu() {
         return this.casDoVybuchu;
     }
 
@@ -65,9 +65,9 @@ public class Bomba {
     * Nastane tak kratko pred vybuchom pre efekt vybuchu.
     */
 
-    public void zmenObrazokNavybuch(){
-       this.obrazokBomby.zmenObrazok("assets/vybuchBomby.png");
-       this.obrazokBomby.zobraz();
+    public void zmenObrazokNavybuch() {
+        this.obrazokBomby.zmenObrazok("assets/vybuchBomby.png");
+        this.obrazokBomby.zobraz();
     }
 
    /*
@@ -75,7 +75,7 @@ public class Bomba {
    * @return hodnota damage bomby
    */
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
@@ -83,7 +83,7 @@ public class Bomba {
     * Skryje bombu po vybuchu
     */
 
-    public void znicenie(){
+    public void znicenie() {
         this.obrazokBomby.skry();
     }
 

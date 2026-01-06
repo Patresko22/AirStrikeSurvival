@@ -22,7 +22,7 @@ public class RaketaStihacky {
      * @param y je pociatocna suradnica y pozicie rakety
      * */
 
-    public RaketaStihacky(int x, int y){
+    public RaketaStihacky(int x, int y) {
         this.polohaX = x + 14;
         this.polohaY = y;
         this.obrazokRakety = new Obrazok("assets/raketaStihacky.png");
@@ -38,10 +38,10 @@ public class RaketaStihacky {
      * Ak uz vybuchla tak sa dalej nepohybuje.
      * */
 
-    public  void  tik(){
-        if (this.vybuch){
+    public  void  tik() {
+        if (this.vybuch) {
             return;
-        }else {
+        } else {
             this.obrazokRakety.posunZvisle(+7);
             this.polohaY += 7;
         }
@@ -52,7 +52,7 @@ public class RaketaStihacky {
      * @return vrati poziciu x rakety.
      * */
 
-    public int getRaketaX(){
+    public int getRaketaX() {
         return this.polohaX;
     }
 
@@ -61,7 +61,7 @@ public class RaketaStihacky {
      * @return vrati poziciu y rakety.
      * */
 
-    public int getRaketaY(){
+    public int getRaketaY() {
         return this.polohaY;
     }
 
@@ -73,7 +73,7 @@ public class RaketaStihacky {
      * Nastavi damage na 0
      * */
 
-    public void vybuch(){
+    public void vybuch() {
         this.vybuch = true;
         this.obrazokRakety.zmenObrazok("assets/vybuchRaketa.png");
         this.obrazokRakety.zobraz();
@@ -85,7 +85,7 @@ public class RaketaStihacky {
      * */
 
 
-    public void vybuchla(){
+    public void vybuchla() {
         this.obrazokRakety.skry();
         System.out.println("Raketa Vybuchla");
     }
@@ -95,7 +95,7 @@ public class RaketaStihacky {
      * @return hodnota damage rakety
      * */
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
@@ -104,7 +104,7 @@ public class RaketaStihacky {
      * @param damage je hodnota na aku ma damage rakety zmenit.
      * */
 
-    public void setDamage(int damage){
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
@@ -112,7 +112,7 @@ public class RaketaStihacky {
      * Uberie cas do vybuchu rakety o 1 tik.
      * */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoVybuchu -= 1;
     }
 
@@ -121,7 +121,7 @@ public class RaketaStihacky {
      * @return vrati true ak vybuchla, inak false.
      * */
 
-    public boolean getVybuch(){
+    public boolean getVybuch() {
         return this.vybuch;
     }
 
@@ -130,7 +130,7 @@ public class RaketaStihacky {
      * @return vrati cas do vybuchu rakety v tikoch
      * */
 
-    public int getCasDoVybuchu(){
+    public int getCasDoVybuchu() {
         return this.casDoVybuchu;
     }
 }

@@ -13,7 +13,7 @@ public class StartScreen {
     * Vytvori a zobrazi startovaciu obrazovku.
     * */
 
-    public StartScreen(){
+    public StartScreen() {
         this.pozadie = new Obrazok("assets/startMenu.png");
         this.pozadie.zmenPolohu(0, 0);
         this.pozadie.zobraz();
@@ -24,7 +24,7 @@ public class StartScreen {
     * Skryje startovaciu obrazovku
     * */
 
-    public void skry(){
+    public void skry() {
         this.pozadie.skry();
     }
 

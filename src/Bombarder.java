@@ -72,7 +72,7 @@ public class Bombarder {
     * @param ubrateHP je pocet zivotov ktore sa maju bombarderu odpocitat.
     */
 
-    public void uberHP ( int ubrateHP){
+    public void uberHP ( int ubrateHP) {
         this.hp -= ubrateHP;
     }
 
@@ -90,7 +90,7 @@ public class Bombarder {
     * Tym oznaci ze bombarder uz zhodil bombu.
     */
 
-    public void zhodBombu(){
+    public void zhodBombu() {
         this.zhodenaBomba = true;
     }
 
@@ -108,7 +108,7 @@ public class Bombarder {
    * @return cas do preletenia v tikoch.
    */
 
-    public int getCasDoPreletenie(){
+    public int getCasDoPreletenie() {
         return this.casDoPreletenie;
     }
 
@@ -116,7 +116,7 @@ public class Bombarder {
     * Uberie cas do preletenia o 1 tik.
     */
 
-    public void uberCas(){
+    public void uberCas() {
         this.casDoPreletenie -= 1;
     }
 
@@ -125,7 +125,7 @@ public class Bombarder {
    * @return vrati true ak je bombarder zniceny, inak false
    */
 
-    public boolean getJeZniceny(){
+    public boolean getJeZniceny() {
         return this.jeZniceny;
     }
 
@@ -134,7 +134,7 @@ public class Bombarder {
     * @return hodnota skore bombardera
     */
 
-    public int getSkore(){
+    public int getSkore() {
         return this.skore;
     }
 }

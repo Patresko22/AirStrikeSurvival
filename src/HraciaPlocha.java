@@ -30,14 +30,14 @@ public class HraciaPlocha {
         this.hornyPanel.zmenPolohu(0, 0);
         this.hornyPanel.zobraz();
         this.skoreText = new BlokTextu("Skóre: 0");
-        this.skoreText.zmenFont("Arial", StylFontu.BOLD,20);
+        this.skoreText.zmenFont("Arial",  StylFontu.BOLD, 20);
         this.skoreText.zmenFarbu("black");
-        this.skoreText.zmenPolohu(400,27);
+        this.skoreText.zmenPolohu(400, 27);
         this.skoreText.zobraz();
         this.hpLodeText = new BlokTextu("HP Lode: 0");
-        this.hpLodeText.zmenFont("Arial", StylFontu.BOLD,10);
+        this.hpLodeText.zmenFont("Arial",  StylFontu.BOLD, 10);
         this.hpLodeText.zmenFarbu("black");
-        this.hpLodeText.zmenPolohu(200,25);
+        this.hpLodeText.zmenPolohu(200, 25);
         this.hpLodeText.zobraz();
     }
 
@@ -46,7 +46,7 @@ public class HraciaPlocha {
     * @param skore je aktualne skore ktore sa ma zobrazit.
     * */
 
-    public void nastavSkore(int skore){
+    public void nastavSkore(int skore) {
         this.skoreText.zmenText("Skóre: " + skore);
     }
 
@@ -55,7 +55,7 @@ public class HraciaPlocha {
     * @param hp je aktualne hp lode ktore sa ma zobrazit.
     * */
 
-    public void nastavHpLode(int hp){
+    public void nastavHpLode(int hp) {
         this.hpLodeText.zmenText("HP Lode: " + hp);
     }
 }

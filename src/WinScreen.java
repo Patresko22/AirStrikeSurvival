@@ -33,7 +33,7 @@ public class WinScreen {
     public WinScreen(int skore) {
 
         this.skore = skore;
-        int maximalneSkore = this.getHighSkoreZoSuboru();
+        int maximalneSkore = this.getMaximalneSkoreZoSuboru();
         this.pozadie = new Obrazok("assets/winMenu.png");
         this.pozadie.zmenPolohu(0, 0);
         this.pozadie.zobraz();
@@ -44,7 +44,7 @@ public class WinScreen {
         this.skoreText.zobraz();
 
         if (this.skore > maximalneSkore) {
-            this.ulozNoveHighSkore(skore);
+            this.ulozNoveMaximalneSkore(skore);
             maximalneSkore = this.skore;
             this.dosiahnuteHighSkore = true;
         }
@@ -68,7 +68,7 @@ public class WinScreen {
     * @param skore je nove maximalne skore.
     * */
 
-    public void ulozNoveHighSkore(int skore) {
+    public void ulozNoveMaximalneSkore(int skore) {
         try (PrintWriter zapisovac = new PrintWriter(this.highScoreSubor)) {
             zapisovac.println(skore);
         } catch (FileNotFoundException e) {
@@ -82,10 +82,10 @@ public class WinScreen {
     * @return je ulozene maximalne skore.
     * */
 
-    public int getHighSkoreZoSuboru() {
+    public int getMaximalneSkoreZoSuboru() {
         File subor = new File(this.highScoreSubor);
         if (!subor.exists()) {
-            this.ulozNoveHighSkore(0);
+            this.ulozNoveMaximalneSkore(0);
             return 0;
         }
         try (Scanner scanner = new Scanner(subor)) {

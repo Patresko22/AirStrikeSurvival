@@ -13,18 +13,23 @@ public class Hrac {
     private int gulometTimeOut = 10;
     private boolean jeGulometTimeOut = false;
     private boolean zablokovanyPohyb = false;
+    private boolean zacatHru = false;
+    private Hra hra;
+    private StartScreen startScreen;
 
 
 
 
-    public Hrac(GameManager gameManager){
+    public Hrac(GameManager gameManager, Hra hra, StartScreen startScreen){
         this.typZbrane = TypZbrane.GULOMET;
         this.polohaHracaX = 250;
         this.polohaHracaY = 650;
-        this.obrazokHraca = new Obrazok("assets/HracZBRAN/hrac_zbran.png");
+        this.obrazokHraca = new Obrazok("assets/hracGulomet.png");
         this.obrazokHraca.zmenPolohu(250,650);
-        this.obrazokHraca.zobraz();
         this.gameManager = gameManager;
+        this.hra = hra;
+        this.startScreen = startScreen;
+        this.zablokovanyPohyb = true;
     }
 
 
@@ -135,11 +140,11 @@ public class Hrac {
     public void zmenZbran(){
         if (this.typZbrane == TypZbrane.GULOMET){
             this.typZbrane = TypZbrane.RAKETOMET;
-            this.obrazokHraca.zmenObrazok("assets/HracRPG/hrac_RPG_HORE.png");
+            this.obrazokHraca.zmenObrazok("assets/hracRaketomet.png");
             this.obrazokHraca.zobraz();
         }else {
             this.typZbrane = TypZbrane.GULOMET;
-            this.obrazokHraca.zmenObrazok("assets/HracZBRAN/hrac_zbran.png");
+            this.obrazokHraca.zmenObrazok("assets/hracGulomet.png");
             this.obrazokHraca.zobraz();
         }
     }
@@ -183,5 +188,17 @@ public class Hrac {
 
     public void zablokujPohyb(){
         this.zablokovanyPohyb = true;
+    }
+
+
+    public void start(){
+        if (this.zacatHru){
+            return;
+        }
+        this.zacatHru = true;
+        this.hra.spustiLevel();
+        this.startScreen.skry();
+        this.obrazokHraca.zobraz();
+        this.zablokovanyPohyb = false;
     }
 }

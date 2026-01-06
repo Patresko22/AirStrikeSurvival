@@ -30,11 +30,13 @@ public class Stihacka {
             this.pocetStrielRakiet = random.nextInt(2, 5);
             this.pocetStrielGuliek = 0;
             System.out.println("Stihacka ma rakiet: " + this.pocetStrielRakiet );
+            this.typZbraneStihacky = TypZbraneStihacky.Rakety;
         }
         if (typZbrane == 2){
             this.pocetStrielGuliek = random.nextInt(7, 15);
             this.pocetStrielRakiet = 0;
             System.out.println("Stihacka ma guliek: " + this.pocetStrielGuliek );
+            this.typZbraneStihacky = TypZbraneStihacky.Gulomet;
         }
         this.poziciaYnaAktivovanieZbrane = random.nextInt(0, 300);
         //velkosť obrazka je 60 x 50
@@ -59,7 +61,7 @@ public class Stihacka {
     }
 
     public void znicenie () {
-        System.out.println("znicene Stihacka");
+        System.out.println("znicena Stihacka");
         this.obrazokStihacky.skry();
         this.jeZniceny = true;
     }

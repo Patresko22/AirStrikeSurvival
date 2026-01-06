@@ -2,13 +2,20 @@ import fri.shapesge.BlokTextu;
 import fri.shapesge.Obrazok;
 import fri.shapesge.StylFontu;
 
-//OK
-
+/*
+* Trieda EndScreen zobrazi koncovu obrazovku po prehre hraca
+* Na obrazovke vykresli pozadie a dosiahnute skore.
+*/
 public class EndScreen {
     private int skore;
     private Obrazok pozadie;
     private BlokTextu skoreText;
 
+
+    /*
+    * Vytvorí a zobrazi koncovu obrazovku s danym skore.
+    * @param skore je vysledne skore hraca ktore sa ma na obrazovke zobrazit.
+    */
 
     public EndScreen(int skore){
         this.skore = skore;

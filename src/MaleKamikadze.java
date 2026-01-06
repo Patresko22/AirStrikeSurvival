@@ -88,7 +88,7 @@ public class MaleKamikadze {
         this.obrazokMaleKamikadze.zmenObrazok("assets/vybuchBomby.png");
         this.obrazokMaleKamikadze.zobraz();
         this.vybuch = true;
-        if (posunutePoVybuchu == false){
+        if (!this.posunutePoVybuchu){
             this.obrazokMaleKamikadze.posunZvisle(10);
             this.posunutePoVybuchu = true;
         }

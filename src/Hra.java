@@ -1,9 +1,23 @@
 import fri.shapesge.Manazer;
 
+/*
+* Trieda Hra reprezentuje hru ako celok.
+* Zodpoveda za inicializaciu hernych objektov.
+* Vytvara hraca.
+* Spravuje startovaci obrazovku.
+* Spusta level.
+* */
+
 public class Hra {
     private GameManager gameManager;
     private Manazer manazer;
     private StartScreen startScreen;
+
+    /*
+    * Vytvorí novú hru.
+    * Inicializuje hraciu plochu, manazera hry, startovaciu obrazovku a hraca.
+    * Pohyb hraca na zaciatku zablokuje.
+    * */
 
 
     public Hra(){
@@ -16,7 +30,11 @@ public class Hra {
         manazer.spravujObjekt(Hrac);
     }
 
-
+    /*
+    * Spusti level hry.
+    * Vytvori lod hraca, zaregistruje game manazera.
+    * Vytvori a zaregistruje vsetkych nepriatelov.
+    * */
 
     public void spustiLevel(){
 
@@ -217,9 +235,6 @@ public class Hra {
         this.manazer.spravujObjekt(stihacka9);
 
     }
-
-
-
 
 
 }

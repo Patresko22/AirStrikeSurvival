@@ -1,5 +1,9 @@
 import fri.shapesge.Obrazok;
-//OK
+
+/*
+* Trieda Hrac reprezentuje hraca v hre.
+* Hrac sa moze pohybovat na palube lode, prepinat zbran a strielat.
+* Zaroven spravuje cooldown zbrani a umoznuje spustit hru zo startovacej obrazovky.*/
 
 public class Hrac {
     private Obrazok obrazokHraca;
@@ -17,8 +21,13 @@ public class Hrac {
     private Hra hra;
     private StartScreen startScreen;
 
-
-
+    /*
+    * Vytvori hraca, nastavi pociatocnu poziciu a zakladnu zbran (gulomet).
+    * Hrac je na zaciatku zablokovany kym sa hra nespusti.
+    * @param gameManaget je manazer hry do ktoreho sa pridavaju projektily hraca.
+    * @param hra je referencia na hru.
+    * @param startScreen je startovacia obrazovka ktora sa po spusteni hry skryje.
+    * */
 
     public Hrac(GameManager gameManager, Hra hra, StartScreen startScreen){
         this.typZbrane = TypZbrane.GULOMET;
@@ -33,11 +42,20 @@ public class Hrac {
     }
 
 
-
+    /*
+    * Metoda sa vola kazdy tik.
+    * Spravuje odpocitavanie cooldownu zbrani.
+    * */
 
     public void tik() {
         kontrolaTimeOut();
     }
+
+    /*
+    * Znizi pocet tlaceni ESC.
+    * Po vyčerpani ukonci aplikaciu.
+    * Nastavene na 2.
+    * */
 
     public void zrus(){
         this.pocetZruseni -= 1;
@@ -45,6 +63,11 @@ public class Hrac {
             System.exit(0);
         }
     }
+
+    /*
+    * Posunie hraca doprava o 10, ak pohyb nieje zablokovany,
+    * alebo nieje na zakazanej pozicii. (okraj lode)
+    * */
 
     public void posunVpravo() {
         if (!zablokovanyPohyb){
@@ -66,6 +89,11 @@ public class Hrac {
 
     }
 
+    /*
+     * Posunie hraca dolava o 10, ak pohyb nieje zablokovany,
+     * alebo nieje na zakazanej pozicii. (okraj lode)
+     * */
+
     public void posunVlavo() {
         if (!this.zablokovanyPohyb){
             if(getPolohaHracaX() == -10 ||
@@ -83,7 +111,9 @@ public class Hrac {
 
 
 
-    //Horna hranica lode je 640 Y
+    /*
+     * Posunie hraca hore o 10, ak pohyb nieje zablokovany,
+     * alebo nieje na zakazanej pozicii. (okraj lode)*/
 
 
     public void posunHore() {
@@ -119,6 +149,10 @@ public class Hrac {
         }
     }
 
+    /*
+     * Posunie hraca dole o 10, ak pohyb nieje zablokovany,
+     * alebo nieje na zakazanej pozicii. (okraj lode)*/
+
     public void posunDole() {
         if (!this.zablokovanyPohyb){
             if (getPolohaHracaY() != 680) {
@@ -129,13 +163,29 @@ public class Hrac {
         }
     }
 
+    /*
+    * Vrati aktualnu suradnicu x pozicie hraca
+    * @return suradnica x polohy hraca
+    * */
+
     public int getPolohaHracaX(){
         return this.polohaHracaX;
     }
 
+    /*
+     * Vrati aktualnu suradnicu y pozicie hraca
+     * @return suradnica y polohy hraca
+     * */
+
     public int getPolohaHracaY(){
         return this.polohaHracaY;
     }
+
+    /*
+    * Prepne typ zbrane hraca.
+    * Bud gulomet alebo raketomet
+    * Aktualizuje podla toho obrazok hraca.
+    * */
 
     public void zmenZbran(){
         if (this.typZbrane == TypZbrane.GULOMET){
@@ -148,6 +198,12 @@ public class Hrac {
             this.obrazokHraca.zobraz();
         }
     }
+
+    /*
+    * Aktivuje strelbu podla aktualne zvolenej zbrane.
+    * Ak nieje pohyb zablokovany cooldownom.
+    * Vytvori projektil a prida ho do game manazer.
+    * */
 
     public void aktivuj() {
         if (!this.zablokovanyPohyb){
@@ -168,6 +224,12 @@ public class Hrac {
         }
     }
 
+    /*
+    * Spravuje odcitanie cooldownu zbrani.
+    * Po vyprsani cooldownu sa cooldown vrati na povodnu hodnotu a hrac
+    * moze vystrelit.
+    * */
+
     public void kontrolaTimeOut(){
         if (this.jeRaketometTimeOut){
             this.raketometTimeOut -= 1;
@@ -186,9 +248,18 @@ public class Hrac {
         }
     }
 
+    /*
+    * Zablokuje pohyb hraca.
+    * */
+
     public void zablokujPohyb(){
         this.zablokovanyPohyb = true;
     }
+
+    /*
+    * Spusti hru jeden krat
+    * Skryje startovaciu obrazovku, zobrazi hraca a odblokuje mu pohyb.
+    * */
 
 
     public void start(){

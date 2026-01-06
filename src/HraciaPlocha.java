@@ -1,7 +1,12 @@
 import fri.shapesge.BlokTextu;
 import fri.shapesge.Obrazok;
 import fri.shapesge.StylFontu;
-//OK
+
+
+/*
+* Trieda HraciaPlocha reprezentuje vizualnnu hraciu plochu.
+* Zobrazuje pozadie, horny panel a textove informacie ako skore a hp lode.
+* */
 
 
 public class HraciaPlocha {
@@ -11,6 +16,11 @@ public class HraciaPlocha {
     private int hpLode;
     private BlokTextu skoreText;
     private BlokTextu hpLodeText;
+
+    /*
+    * Vytvori hraciu plochu.
+    * Zobrazi pozadie, horny panel a inicializuje textove polia pre skore a hp lode.
+    * */
 
     public HraciaPlocha() {
         this.pozadie = new Obrazok("assets/pozadie.jpg");
@@ -31,9 +41,19 @@ public class HraciaPlocha {
         this.hpLodeText.zobraz();
     }
 
+    /*
+    * Aktualizuje zobrazenu hodnotu skore na hornom paneli.
+    * @param skore je aktualne skore ktore sa ma zobrazit.
+    * */
+
     public void nastavSkore(int skore){
         this.skoreText.zmenText("Skóre: " + skore);
     }
+
+    /*
+    * Aktualizuje zobrazenu hodnotu hp lode na hornom paneli.
+    * @param hp je aktualne hp lode ktore sa ma zobrazit.
+    * */
 
     public void nastavHpLode(int hp){
         this.hpLodeText.zmenText("HP Lode: " + hp);

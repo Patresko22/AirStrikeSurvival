@@ -6,7 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-//OK
+
+/*
+* Zobrazi vitaznu obrazovku po dokonceni levelu.
+* Zobrazuje aktualne skore hraca.
+* Zobrazuje maximalne skore hraca.
+* Maximalne skore cita zo suboru v pripade prekonania
+* ho prepise.
+* */
 
 public class WinScreen {
     private int skore;
@@ -15,6 +22,12 @@ public class WinScreen {
     private BlokTextu maximalneSkoreText;
     private String highScoreSubor = "highScore.txt";
     private boolean dosiahnuteHighSkore;
+
+    /*
+    * Vytvori a zobrazi vitaznu obrazovku s vyslenym skore.
+    * Nacita a pripadne aktualizuje maximalne skore.
+    * @param skore je vysledne skore hraca
+    * */
 
 
     public WinScreen(int skore){
@@ -50,6 +63,11 @@ public class WinScreen {
 
     }
 
+    /*
+    * Ulozi nove maximalne skore do suboru.
+    * @param skore je nove maximalne skore.
+    * */
+
     public void ulozNoveHighSkore(int skore){
         try (PrintWriter zapisovac = new PrintWriter(this.highScoreSubor)){
             zapisovac.println(skore);
@@ -57,6 +75,12 @@ public class WinScreen {
             System.out.println("Subor sa nenasiel.");
         }
     }
+
+    /*
+    * Nacita maximalne skore zo suboru.
+    * Ak subor neexistuje vytvorí ho a nastavi na 0.
+    * @return je ulozene maximalne skore.
+    * */
 
     public int getHighSkoreZoSuboru(){
         File subor = new File(this.highScoreSubor);

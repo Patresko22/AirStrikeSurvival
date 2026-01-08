@@ -59,9 +59,9 @@ This structure improves readability, maintainability, and extensibility of the c
 |----|-------|
 | Arrow keys | Move player |
 | Space | Shoot |
-| Shift | Switch weapon |
+| P | Switch weapon |
 | Enter | Start game |
-| Esc | Exit game |
+| 2x Esc | Exit game |
 
 ---
 

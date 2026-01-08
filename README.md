@@ -96,7 +96,7 @@ assets/
 All game graphics (backgrounds, sprites, explosions) are stored in the assets/ folder.
 The game uses relative paths, so the assets folder must be present in the working directory.
 
-⸻⸻⸻⸻⸻⸻
+---
 
 📊 UML & Design
 
@@ -106,7 +106,7 @@ The project was designed using UML class diagrams focusing on:
 	•	Composition
 	•	Clear separation of responsibilities
 
-⸻⸻⸻⸻⸻⸻
+---
 
 🚀 Possible Improvements
 	•	Refactor GameManager into smaller manager classes
@@ -116,14 +116,37 @@ The project was designed using UML class diagrams focusing on:
 	•	Add sound effects and background music
 
 
-⸻⸻⸻⸻⸻⸻
+---
+
+### UML – External View (Public Interface)
+
+The UML class diagram included in this project represents the **external view** of the application.  
+This means that each class is shown only through its **public interface**, which consists of:
+
+- Public constructors
+- Public methods
+
+Private attributes and private helper methods are intentionally omitted from the diagram.  
+The purpose of this approach is to focus on **how individual classes can be used and interacted with**, rather than on their internal implementation details.
+
+This type of UML diagram clearly shows:
+- The responsibilities of each class
+- The available operations that other parts of the system can call
+- The relationships between classes on an interface level
+
+The external view improves readability and makes the system easier to understand, especially for documentation and design presentation purposes. It also follows good object-oriented design principles by emphasizing **encapsulation**, where internal data and logic are hidden and accessed only through well-defined public methods.
+
+
+<img width="1158" height="825" alt="UML-AirStrike" src="https://github.com/user-attachments/assets/f8987bf3-a366-4edc-80bc-de53685e194b" />
+
+
+---
 
 👨‍🎓 Author
 
 This project was developed as a student assignment for an Object-Oriented Programming course.
 
-
-⸻⸻⸻⸻⸻⸻
+---
 
 📜 License
 
